@@ -26,12 +26,15 @@ const fetchRetry = (url, opts = {}, retryOpts) => (
       const res = await fetch(url, opts);
       debug('status %d', res.status);
       if (res.status >= 500 && res.status < 600) {
+        const err = new Error(res.statusText);
+        err.code = err.status = err.statusCode = res.status;
+        err.url = url;
         throw err;
       } else {
         return res;
       }
     } catch (err) {
-      debug(`${method} ${url} error (${res.status}). ${attempt < MAX_RETRIES ? 'retrying' : ''}`, err);
+      debug(`${method} ${url} error (${err.status}). ${attempt < MAX_RETRIES ? 'retrying' : ''}`, err);
       throw err;
     }
   }, retryOpts || {
