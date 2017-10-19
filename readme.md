@@ -15,7 +15,7 @@ module.exports = async () => {
 }
 ```
 
-Make sure to `yarn add fetch-retry` in your main package.
+Make sure to `yarn add @zeit/fetch-retry` in your main package.
 
 The third optional parameter is custom [retry options](https://github.com/zeit/async-retry)
 passed to `async-retry`.
