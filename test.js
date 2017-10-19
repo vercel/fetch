@@ -1,5 +1,5 @@
 const {createServer} =  require('http');
-const retryFetch = require('./index');
+const retryFetch = require('./index')();
 
 test('retries upon 500', async () => {
   let i = 0
