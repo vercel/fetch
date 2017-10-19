@@ -1,0 +1,21 @@
+{
+  "name": "@zeit/fetch-cached-dns",
+  "version": "0.0.0",
+  "description": "A decorator on top of `fetch` that caches the DNS query of the `hostname` of the passed URL",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeit/fetch-cached-dns.git"
+  },
+  "author": "Nathan Rajlich <nate@zeit.co>",
+  "bugs": {
+    "url": "https://github.com/zeit/fetch-cached-dns/issues"
+  },
+  "homepage": "https://github.com/zeit/fetch-cached-dns#readme",
+  "peerDependencies": {
+    "node-fetch": "*"
+  },
+  "dependencies": {
+    "@zeit/dns-cached-resolve": "^1.0.0"
+  }
+}
