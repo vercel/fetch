@@ -1,4 +1,4 @@
-# fetch
+# @zeit/fetch
 
 Opinionated `fetch` optimized for use inside microservices. Bundles:
 
