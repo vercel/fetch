@@ -8,7 +8,8 @@ with sensible defaults for retrying to prevent common errors.
 `fetch-retry` is a drop-in replacement for `fetch`:
 
 ```js
-const fetch = require('@zeit/fetch-retry');
+const fetch = require('@zeit/fetch-retry')(require('node-fetch'))
+
 module.exports = async () => {
   const res = await fetch('http://localhost:3000')
   console.log(res.status);
