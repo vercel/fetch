@@ -1,0 +1,18 @@
+{
+  "name": "@zeit/fetch",
+  "version": "1.0.0",
+  "description": "Opinionated `fetch` optimized for use inside microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeit/fetch.git"
+  },
+  "author": "Nathan Rajlich <nate@zeit.co>",
+  "bugs": {
+    "url": "https://github.com/zeit/fetch/issues"
+  },
+  "homepage": "https://github.com/zeit/fetch#readme"
+}
