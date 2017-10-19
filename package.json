@@ -5,6 +5,9 @@
     "jest": "^21.2.1",
     "node-fetch": "^1.7.3"
   },
+  "peerDependencies": {
+    "node-fetch": "*"
+  },
   "dependencies": {
     "async-retry": "^1.1.3"
   },
