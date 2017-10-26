@@ -1,6 +1,6 @@
 # fetch-retry
 
-A layer on top of `fetch` (via [node-fetch](https://www.npmjs.com/package/node-fetch)
+A layer on top of `fetch` (via [node-fetch](https://www.npmjs.com/package/node-fetch))
 with sensible defaults for retrying to prevent common errors.
 
 ## How to use
