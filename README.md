@@ -8,7 +8,7 @@ Opinionated `fetch` optimized for use inside microservices. Bundles:
 ## How to use
 
 ```js
-const fetch = require('@zeit/fetch')(require('node-fetch'))
+const fetch = require('@zeit/fetch')(require('some-fetch-implementation'))
 ```
 
-*NOTE: if the fetch implementation is not supplied, it will attempt to use peerDep `node-fetch`*
+If no fetch implementation is supplied, it will attempt to use peerDep `node-fetch`.
