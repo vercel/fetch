@@ -16,8 +16,8 @@ function getDefaultGlobalAgent() {
 }
 
 function wrapDefaultGlobalAgent(fetch) {
-  return /* async */ function fetchWithGlobalAgent(url, opts = {}, args...) {
-    opts.agent = opts.agent || defaultGlobalAgent();
+  return /* async */ function fetchWithGlobalAgent(url, opts = {}, ...args) {
+    opts.agent = opts.agent || getDefaultGlobalAgent();
     return fetch(url, opts, ...args);
   };
 }
@@ -28,6 +28,5 @@ function setup(fetch) {
   }
   fetch = setupFetchCachedDns(fetch);
   fetch = setupFetchRetry(fetch);
-  fetch = getDefaultGlobalAgent(fetch);
   return fetch;
 }
