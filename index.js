@@ -28,5 +28,6 @@ function setup(fetch) {
   }
   fetch = setupFetchCachedDns(fetch);
   fetch = setupFetchRetry(fetch);
+  fetch = wrapDefaultGlobalAgent(fetch);
   return fetch;
 }
