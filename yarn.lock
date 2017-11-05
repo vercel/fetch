@@ -8,9 +8,9 @@
   dependencies:
     lru-cache "4.1.1"
 
-"@zeit/fetch-cached-dns@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@zeit/fetch-cached-dns/-/fetch-cached-dns-1.0.0.tgz#f911250a267a2938068a9e9757602cfd5243af89"
+"@zeit/fetch-cached-dns@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@zeit/fetch-cached-dns/-/fetch-cached-dns-1.0.1.tgz#85b3bc3793f35ccc857429bcae3b8899bf9f1f79"
   dependencies:
     "@zeit/dns-cached-resolve" "^1.0.0"
 
