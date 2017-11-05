@@ -18,7 +18,7 @@ function setup (fetch) {
       if (!opts.headers.Host) {
         opts.headers.Host = parsed.host;
       }
-      parsed.host = await resolve(parsed.hostname);
+      parsed.hostname = await resolve(parsed.hostname);
       url = format(parsed);
     }
     return fetch(url, opts);
