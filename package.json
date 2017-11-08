@@ -34,27 +34,10 @@
     ]
   },
   "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 8,
-      "sourceType": "script"
-    },
-    "extends": [
-      "eslint:recommended"
-    ],
-    "env": {
-      "es6": true,
-      "node": true
-    },
-    "rules": {
-      "func-names": [
-        "error",
-        "as-needed"
-      ],
-      "no-shadow": "error",
-      "no-extra-semi": 0
-    }
+    "extends": "@zeit/eslint-config-node"
   },
   "devDependencies": {
+    "@zeit/eslint-config-node": "^0.1.0",
     "eslint": "^4.10.0",
     "jest": "21.2.1",
     "lint-staged": "^4.3.0",
