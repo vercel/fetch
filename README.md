@@ -9,10 +9,12 @@ Opinionated `fetch` optimized for use inside microservices. Bundles:
 It automatically configures an `agent` via [agentkeepalive](https://github.com/node-modules/agentkeepalive),
 if not provided, with the following settings:
 
-- `maxSockets` `200`
-- `maxFreeSockets` `20`
-- `timeout` `60000`
-- `freeSocketKeepAliveTimeout` `30000`
+| Name                         | Value |
+|------------------------------|-------|
+| `maxSockets`                 | 200   |
+| `maxFreeSockets`             | 20    |
+| `timeout`                    | 60000 |
+| `freeSocketKeepAliveTimeout` | 30000 |
 
 ## How to use
 
