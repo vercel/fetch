@@ -4,9 +4,9 @@ Opinionated `fetch` optimized for use inside microservices. Bundles:
 
 - https://github.com/zeit/fetch-retry
 - https://github.com/zeit/fetch-cached-dns
-- https://github.com/node_modules/agentkeepalive
+- https://github.com/node-modules/agentkeepalive
 
-It automatically configures an `agent` via [agentkeepalive](https://github.com/node_modules/agentkeepalive),
+It automatically configures an `agent` via [agentkeepalive](https://github.com/node-modules/agentkeepalive),
 if not provided, with the following settings:
 
 - `maxSockets` `200`
