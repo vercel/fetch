@@ -43,6 +43,11 @@ function setup(fetch) {
   if (!fetch) {
     fetch = require('node-fetch')
   }
+
+  if (typeof fetch !== 'function') {
+    throw new Error('fetch() argument isn\'t a function; did you forget to initialize your @zeit/fetch import?')
+  }
+
   fetch = setupFetchCachedDns(fetch)
   fetch = setupFetchRetry(fetch)
   fetch = wrapDefaultGlobalAgent(fetch)
