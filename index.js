@@ -17,7 +17,7 @@ function setup(fetch) {
     const ip = isIP(parsed.hostname)
     if (ip === 0) {
       if (!opts) opts = {}
-      if (!opts.headers) opts.headers = new Headers()
+      opts.headers = new Headers(opts.headers)
       if (!opts.headers.has('Host')) {
         opts.headers.set('Host', parsed.host)
       }
@@ -28,7 +28,7 @@ function setup(fetch) {
     const res = await fetch(url, opts)
     if (isRedirect(res.status)) {
       const redirectOpts = Object.assign({}, opts)
-      if (!redirectOpts.headers) redirectOpts.headers = new Headers()
+      redirectOpts.headers = new Headers(opts.headers)
 
       // per fetch spec, for POST request with 301/302 response, or any request with 303 response, use GET when following redirect
       if (

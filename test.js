@@ -47,3 +47,20 @@ test('works with redirects', async () => {
   serverA.close()
   serverB.close()
 })
+
+test('works with `headers` as an Object', async () => {
+  const server = createServer((req, res) => {
+    res.end(req.headers['x-zeit'])
+  })
+
+  await listen(server)
+  const { port } = server.address()
+
+  const res = await cachedDNSFetch(`http://localtest.me:${port}`, {
+    headers: {
+      'X-Zeit': 'geist'
+    }
+  })
+  expect(await res.text()).toBe('geist')
+  server.close()
+})
