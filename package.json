@@ -1,6 +1,6 @@
 {
   "name": "@zeit/fetch",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Opinionated `fetch` optimized for use inside microservices",
   "main": "index.js",
   "scripts": {
