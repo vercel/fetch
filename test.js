@@ -21,7 +21,7 @@ test('works with localtest.me', async () => {
   server.close()
 })
 
-test('works with redirects', async () => {
+test('works with absolute redirects', async () => {
   let portA
   let portB
 
@@ -46,6 +46,30 @@ test('works with redirects', async () => {
 
   serverA.close()
   serverB.close()
+})
+
+test('works with relative redirects', async () => {
+  let count = 0
+  const server = createServer((req, res) => {
+    if (count === 0) {
+      res.setHeader('Location', `/foo`)
+      res.statusCode = 302
+      res.end()
+    } else {
+      res.end(req.url)
+    }
+    count++
+  })
+
+  await listen(server)
+  const { port } = server.address()
+
+  const res = await cachedDNSFetch(`http://localtest.me:${port}`)
+  expect(count).toBe(2)
+  expect(await res.status).toBe(200)
+  expect(await res.text()).toBe(`/foo`)
+
+  server.close()
 })
 
 test('works with `headers` as an Object', async () => {
