@@ -1,8 +1,9 @@
 const HttpAgent = require('agentkeepalive')
-const { HttpsAgent } = require('agentkeepalive')
+const debug = require('debug')('@zeit/fetch')
 const setupFetchRetry = require('@zeit/fetch-retry')
 const setupFetchCachedDns = require('@zeit/fetch-cached-dns')
-const debug = require('debug')('@zeit/fetch')
+
+const { HttpsAgent } = HttpAgent
 
 module.exports = setup
 
@@ -28,13 +29,24 @@ function getDefaultHttpsGlobalAgent() {
     (debug('init https agent'), new HttpsAgent(AGENT_OPTS)))
 }
 
-function wrapDefaultGlobalAgent(fetch) {
-  return /* async */ function fetchWithGlobalAgent(url, opts = {}, ...args) {
-    opts.agent =
-      opts.agent ||
-      (/^https/.test(url)
+function setupZeitFetch(fetch) {
+  return function zeitFetch(url, opts = {}, ...args) {
+    // Add default `agent` if none was provided
+    if (!opts.agent) {
+      opts.agent = /^https/.test(url)
         ? getDefaultHttpsGlobalAgent()
-        : getDefaultHttpGlobalAgent())
+        : getDefaultHttpGlobalAgent()
+    }
+
+    // Convert Object bodies to JSON
+    if (opts.body && typeof opts.body === 'object') {
+      opts.body = JSON.stringify(opts.body)
+      opts.headers = new fetch.Headers(opts.headers)
+      opts.headers.set('Content-Type', 'application/json')
+      opts.headers.set('Content-Length', Buffer.byteLength(opts.body))
+    }
+
+    debug('%s %s', opts.method || 'GET', url)
     return fetch(url, opts, ...args)
   }
 }
@@ -45,11 +57,13 @@ function setup(fetch) {
   }
 
   if (typeof fetch !== 'function') {
-    throw new Error('fetch() argument isn\'t a function; did you forget to initialize your @zeit/fetch import?')
+    throw new Error(
+      "fetch() argument isn't a function; did you forget to initialize your @zeit/fetch import?"
+    )
   }
 
   fetch = setupFetchCachedDns(fetch)
   fetch = setupFetchRetry(fetch)
-  fetch = wrapDefaultGlobalAgent(fetch)
+  fetch = setupZeitFetch(fetch)
   return fetch
 }
