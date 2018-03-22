@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@zeit/best": "^0.4.3",
-    "@zeit/eslint-config-node": "^0.2.13",
+    "@zeit/eslint-config-node": "^0.1.0",
     "eslint": "^4.10.0",
     "lint-staged": "^7.0.0",
     "node-fetch": "2.1.1",
