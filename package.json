@@ -20,7 +20,7 @@
   "dependencies": {
     "@zeit/fetch-cached-dns": "1.0.3",
     "@zeit/fetch-retry": "2.0.0",
-    "agentkeepalive": "3.3.0",
+    "agentkeepalive": "3.4.1",
     "debug": "3.1.0"
   },
   "peerDependencies": {
