@@ -46,11 +46,11 @@ function setupZeitFetch(fetch) {
       opts.headers.set('Content-Type', 'application/json')
       opts.headers.set('Content-Length', Buffer.byteLength(opts.body))
       // Workaround for node-fetch + agentkeepalive bug/issue
-      opts.headers.set('host', parseUrl(url).host)
+      opts.headers.set('host', opts.headers.get('host') || parseUrl(url).host)
     } else {
       // Workaround for node-fetch + agentkeepalive bug/issue
       opts.headers = new fetch.Headers(opts.headers)
-      opts.headers.set('host', parseUrl(url).host)
+      opts.headers.set('host', opts.headers.get('host') || parseUrl(url).host)
     }
 
     debug('%s %s', opts.method || 'GET', url)
