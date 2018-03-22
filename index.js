@@ -2,6 +2,7 @@ const HttpAgent = require('agentkeepalive')
 const debug = require('debug')('@zeit/fetch')
 const setupFetchRetry = require('@zeit/fetch-retry')
 const setupFetchCachedDns = require('@zeit/fetch-cached-dns')
+const { parse: parseUrl } = require('url')
 
 const { HttpsAgent } = HttpAgent
 
@@ -44,6 +45,12 @@ function setupZeitFetch(fetch) {
       opts.headers = new fetch.Headers(opts.headers)
       opts.headers.set('Content-Type', 'application/json')
       opts.headers.set('Content-Length', Buffer.byteLength(opts.body))
+      // Workaround for node-fetch + agentkeepalive bug/issue
+      opts.headers.set('host', parseUrl(url).host)
+    } else {
+      // Workaround for node-fetch + agentkeepalive bug/issue
+      opts.headers = new fetch.Headers(opts.headers)
+      opts.headers.set('host', parseUrl(url).host)
     }
 
     debug('%s %s', opts.method || 'GET', url)
