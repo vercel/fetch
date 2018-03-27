@@ -19,11 +19,14 @@ function setup(fetch) {
       minTimeout: MIN_TIMEOUT,
       retries: MAX_RETRIES,
       factor: FACTOR,
-    }, opts.retry)
+    }, opts.retry);
 
     if (opts.onRetry) {
       retryOpts.onRetry = error => {
-        opts.onRetry(error, opts)
+        opts.onRetry(error, opts);
+        if (opts.retry && opts.retry.onRetry) {
+          opts.retry.onRetry(error);
+        }
       }
     }
 
