@@ -13,7 +13,23 @@ function setup(fetch) {
     fetch = require('node-fetch');
   }
 
-  function fetchRetry(url, opts = {}, retryOpts) {
+  function fetchRetry(url, opts = {}) {
+    const retryOpts = Object.assign({
+      // timeouts will be [ 10, 50, 250 ]
+      minTimeout: MIN_TIMEOUT,
+      retries: MAX_RETRIES,
+      factor: FACTOR,
+    }, opts.retry);
+
+    if (opts.onRetry) {
+      retryOpts.onRetry = error => {
+        opts.onRetry(error, opts);
+        if (opts.retry && opts.retry.onRetry) {
+          opts.retry.onRetry(error);
+        }
+      }
+    }
+
     return retry(async (bail, attempt) => {
       const {method = 'GET'} = opts;
       try {
@@ -32,12 +48,7 @@ function setup(fetch) {
         debug(`${method} ${url} error (${err.status}). ${attempt < MAX_RETRIES ? 'retrying' : ''}`, err);
         throw err;
       }
-    }, retryOpts || {
-      // timeouts will be [ 10, 50, 250 ]
-      minTimeout: MIN_TIMEOUT,
-      retries: MAX_RETRIES,
-      factor: FACTOR
-    })
+    }, retryOpts)
   }
 
   for (const key of Object.keys(fetch)) {

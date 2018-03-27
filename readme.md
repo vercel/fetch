@@ -18,8 +18,9 @@ module.exports = async () => {
 
 Make sure to `yarn add @zeit/fetch-retry` in your main package.
 
-The third optional parameter is custom [retry options](https://github.com/zeit/async-retry)
-passed to `async-retry`.
+Note that you can pass [retry options](https://github.com/zeit/async-retry) to using `opts.retry`.
+We also provide a `opts.onRetry` which is a customized version of `opts.retry.onRetry` and passes
+not only the `error` object in each retry but also the current `opts` object.
 
 ## Rationale
 
