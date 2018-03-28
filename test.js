@@ -88,3 +88,34 @@ test('works with `headers` as an Object', async () => {
   expect(await res.text()).toBe('geist')
   server.close()
 })
+
+test('works with `onRedirect` option to customize opts', async () => {
+  let count = 0
+
+  const server = createServer((req, res) => {
+    if (count === 0) {
+      res.setHeader('Location', `/foo`)
+      res.statusCode = 302
+      res.end()
+    } else {
+      res.end(req.url)
+    }
+    count++
+  })
+
+  await listen(server)
+  const { port } = server.address()
+
+  const options = {
+    onRedirect: jest.fn(opts => {
+      opts.randomOption = true
+    })
+  }
+
+  await cachedDNSFetch(`http://localtest.me:${port}`, options)
+  expect(options.onRedirect.mock.calls.length).toBe(1)
+  expect(options.onRedirect.mock.calls[0][0].headers).toBeDefined()
+  expect(options.onRedirect.mock.calls[0][0].randomOption).toBe(true)
+
+  server.close()
+})

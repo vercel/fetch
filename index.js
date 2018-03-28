@@ -42,6 +42,11 @@ function setup(fetch) {
 
       const location = res.headers.get('Location')
       redirectOpts.headers.delete('Host')
+
+      if (opts.onRedirect) {
+        opts.onRedirect(redirectOpts)
+      }
+
       return fetchCachedDns(location, redirectOpts)
     } else {
       return res
