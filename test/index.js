@@ -40,3 +40,12 @@ exports.worksWithHttps = async () => {
     throw new Error("Doesn't work with https")
   }
 }
+
+/**
+ * We know that http://zeit.co redirects to https so we can use it
+ * as a test to make sure that we switch the agent when the it
+ * happens
+ */
+exports.switchesAgentsOnRedirect = async () => {
+  return fetch(`http://zeit.co`)
+}
