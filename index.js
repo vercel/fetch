@@ -41,7 +41,7 @@ function setup(fetch) {
       }
 
       const location = res.headers.get('Location')
-      redirectOpts.headers.delete('Host')
+      redirectOpts.headers.set('Host', parse(location).host)
 
       if (opts.onRedirect) {
         opts.onRedirect(res, redirectOpts)
