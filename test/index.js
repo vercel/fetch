@@ -40,3 +40,27 @@ exports.worksWithHttps = async () => {
     throw new Error("Doesn't work with https")
   }
 }
+
+exports.switchesAgentsOnRedirect = async () => {
+  const server = createServer((req, res) => {
+    res.writeHead(302, { Location: `https://127.0.0.1` })
+    res.end('done')
+  })
+
+  return new Promise((resolve, reject) => {
+    server.listen(async () => {
+      const { port } = server.address()
+      try {
+        await fetch(`http://127.0.0.1:${port}`)
+        server.close()
+      } catch (err) {
+        if (/SSL/.test(err.message)) {
+          resolve()
+        } else {
+          reject(err)
+        }
+      }
+    })
+    server.on('error', reject)
+  })
+}

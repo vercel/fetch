@@ -30,15 +30,20 @@ function getDefaultHttpsGlobalAgent() {
     (debug('init https agent'), new HttpsAgent(AGENT_OPTS)))
 }
 
+function getAgent(url) {
+  return /^https/.test(url)
+    ? getDefaultHttpsGlobalAgent()
+    : getDefaultHttpGlobalAgent()
+}
+
 function setupZeitFetch(fetch) {
-  return function zeitFetch(url, opts = {}, ...args) {
-    // Add default `agent` if none was provided
+  return function zeitFetch(url, opts = {}) {
     if (!opts.agent) {
-      opts.agent = /^https/.test(url)
-        ? getDefaultHttpsGlobalAgent()
-        : getDefaultHttpGlobalAgent()
+      // Add default `agent` if none was provided
+      opts.agent = getAgent(url)
     }
 
+    opts.redirect = 'manual'
     opts.headers = new fetch.Headers(opts.headers)
     // Workaround for node-fetch + agentkeepalive bug/issue
     opts.headers.set('host', opts.headers.get('host') || parseUrl(url).host)
@@ -50,8 +55,13 @@ function setupZeitFetch(fetch) {
       opts.headers.set('Content-Length', Buffer.byteLength(opts.body))
     }
 
+    // Check the agent on redirections
+    opts.onRedirect = (res, redirectOpts) => {
+      redirectOpts.agent = getAgent(res.headers.get('Location'))
+    }
+
     debug('%s %s', opts.method || 'GET', url)
-    return fetch(url, opts, ...args)
+    return fetch(url, opts)
   }
 }
 
