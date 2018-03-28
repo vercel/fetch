@@ -44,7 +44,7 @@ function setup(fetch) {
       redirectOpts.headers.delete('Host')
 
       if (opts.onRedirect) {
-        opts.onRedirect(redirectOpts)
+        opts.onRedirect(res, redirectOpts)
       }
 
       return fetchCachedDns(location, redirectOpts)

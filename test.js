@@ -107,15 +107,17 @@ test('works with `onRedirect` option to customize opts', async () => {
   const { port } = server.address()
 
   const options = {
-    onRedirect: jest.fn(opts => {
+    onRedirect: jest.fn((res, opts) => {
       opts.randomOption = true
     })
   }
 
   await cachedDNSFetch(`http://localtest.me:${port}`, options)
   expect(options.onRedirect.mock.calls.length).toBe(1)
-  expect(options.onRedirect.mock.calls[0][0].headers).toBeDefined()
-  expect(options.onRedirect.mock.calls[0][0].randomOption).toBe(true)
+  const [res, opts] = options.onRedirect.mock.calls[0]
+  expect(res.status).toEqual(302)
+  expect(opts.headers).toBeDefined()
+  expect(opts.randomOption).toBe(true)
 
   server.close()
 })
