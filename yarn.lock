@@ -52,9 +52,9 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@zeit/eslint-config-node/-/eslint-config-node-0.1.0.tgz#642788d1aada9d0128423c3581e5ac74219dfc37"
 
-"@zeit/fetch-cached-dns@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@zeit/fetch-cached-dns/-/fetch-cached-dns-1.1.1.tgz#93180e6a2baf4d2c32ba4dc1b5fd74ede10b9c40"
+"@zeit/fetch-cached-dns@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@zeit/fetch-cached-dns/-/fetch-cached-dns-1.1.2.tgz#52a05bcb1b0d2e801fc7ca25cddb7af9770a09dc"
   dependencies:
     "@zeit/dns-cached-resolve" "^1.0.0"
 

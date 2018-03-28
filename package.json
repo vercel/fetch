@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/zeit/fetch#readme",
   "dependencies": {
-    "@zeit/fetch-cached-dns": "1.1.1",
+    "@zeit/fetch-cached-dns": "1.1.2",
     "@zeit/fetch-retry": "3.0.0",
     "agentkeepalive": "3.4.1",
     "debug": "3.1.0"
