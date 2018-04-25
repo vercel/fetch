@@ -32,7 +32,7 @@
     "node-fetch": "*"
   },
   "dependencies": {
-    "@zeit/dns-cached-resolve": "^1.0.0"
+    "@zeit/dns-cached-resolve": "^1.2.0"
   },
   "devDependencies": {
     "@zeit/eslint-config-node": "0.1.0",
