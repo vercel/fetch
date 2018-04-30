@@ -43,6 +43,7 @@
     "eslint": "^4.10.0",
     "lint-staged": "^7.0.0",
     "node-fetch": "2.1.2",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "raw-body": "^2.3.2"
   }
 }

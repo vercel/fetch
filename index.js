@@ -47,7 +47,7 @@ function setupZeitFetch(fetch) {
 		opts.headers.set('host', opts.headers.get('host') || parseUrl(url).host);
 
 		// Convert Object bodies to JSON
-		if (opts.body && typeof opts.body === 'object') {
+		if (opts.body && typeof opts.body === 'object' && !Buffer.isBuffer(opts.body)) {
 			opts.body = JSON.stringify(opts.body);
 			opts.headers.set('Content-Type', 'application/json');
 			opts.headers.set('Content-Length', Buffer.byteLength(opts.body));
