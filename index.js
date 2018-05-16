@@ -68,6 +68,8 @@ function setup(fetch) {
 		fetch = require('node-fetch');
 	}
 
+	fetch = fetch.default || fetch
+
 	if (typeof fetch !== 'function') {
 		throw new Error(
 			"fetch() argument isn't a function; did you forget to initialize your @zeit/fetch import?"
