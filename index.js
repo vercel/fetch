@@ -68,7 +68,7 @@ function setup(fetch) {
 		fetch = require('node-fetch');
 	}
 
-	fetch = fetch.default || fetch
+	fetch = fetch.default || fetch;
 
 	if (typeof fetch !== 'function') {
 		throw new Error(
