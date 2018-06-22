@@ -2,6 +2,7 @@
   "name": "@zeit/fetch",
   "version": "3.0.3",
   "description": "Opinionated `fetch` optimized for use inside microservices",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
