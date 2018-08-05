@@ -2,7 +2,7 @@ const assert = require('assert');
 const toBuffer = require('raw-body');
 const listen = require('async-listen');
 const {createServer} = require('http');
-const fetch = require('../index')();
+const fetch = require('../index')(require('node-fetch'));
 
 exports.retriesUponHttp500 = async () => {
 	let i = 0;
