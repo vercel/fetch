@@ -6,7 +6,7 @@ const setupFetchCachedDns = require('@zeit/fetch-cached-dns');
 
 const {HttpsAgent} = HttpAgent;
 
-const AGENT_OPTS = {
+let AGENT_OPTS = {
 	maxSockets: 200,
 	maxFreeSockets: 20,
 	timeout: 60000,
@@ -63,7 +63,7 @@ function setupZeitFetch(fetch) {
 	};
 }
 
-function setup(fetch) {
+function setup(fetch, options = {}) {
 	if (!fetch) {
 		fetch = require('node-fetch');
 	}
@@ -74,6 +74,10 @@ function setup(fetch) {
 		throw new Error(
 			"fetch() argument isn't a function; did you forget to initialize your @zeit/fetch import?"
 		);
+	}
+
+	if (options.agent) {
+		AGENT_OPTS = Object.assign({}, AGENT_OPTS, options.agent);
 	}
 
 	fetch = setupFetchCachedDns(fetch);
