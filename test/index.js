@@ -25,7 +25,7 @@ exports.retriesUponHttp500 = async () => {
 
 exports.worksWithHttps = async () => {
 	const res = await fetch('https://zeit.co');
-	assert.equal(res.headers.get('Server'), 'now');
+	assert.equal(res.headers.get('Server'), 'cloudflare');
 };
 
 /**
