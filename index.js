@@ -1,6 +1,6 @@
 const { isIP } = require('net')
 const { format, parse } = require('url')
-const resolve = require('@zeit/dns-cached-resolve')
+const resolve = require('@zeit/dns-cached-resolve').default
 
 module.exports = setup
 
