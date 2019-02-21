@@ -25,6 +25,7 @@
     "debug": "3.1.0"
   },
   "peerDependencies": {
+    "@types/node-fetch": "2",
     "node-fetch": "2"
   },
   "pre-commit": "lint:staged",
@@ -38,13 +39,13 @@
     "extends": "@zeit/eslint-config-node"
   },
   "devDependencies": {
-    "@zeit/best": "^0.4.3",
-    "@zeit/eslint-config-node": "^0.2.13",
-    "async-listen": "^1.0.0",
-    "eslint": "^4.10.0",
-    "lint-staged": "^7.0.0",
-    "node-fetch": "2.1.2",
-    "pre-commit": "^1.2.2",
-    "raw-body": "^2.3.2"
+    "@zeit/best": "0.5.2",
+    "@zeit/eslint-config-node": "0.2.13",
+    "async-listen": "1.0.0",
+    "eslint": "5.14.1",
+    "lint-staged": "8.1.4",
+    "node-fetch": "2.3.0",
+    "pre-commit": "1.2.2",
+    "raw-body": "2.3.2"
   }
 }
