@@ -53,7 +53,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@types/async-retry@1.2.1":
+"@types/async-retry@1.2.1", "@types/async-retry@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@types/async-retry/-/async-retry-1.2.1.tgz#fa9ac165907a8ee78f4924f4e393b656c65b5bb4"
   integrity sha512-yMQ6CVgICWtyFNBqJT3zqOc+TnqqEPLo4nKJNPFwcialiylil38Ie6q1ENeFTjvaLOkVim9K5LisHgAKJWidGQ==
