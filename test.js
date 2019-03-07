@@ -37,12 +37,9 @@ test('resolves on >MAX_RETRIES', async () => {
   return new Promise((resolve, reject) => {
     server.listen(async () => {
       const {port} = server.address();
-      try {
-        await retryFetch(`http://127.0.0.1:${port}`);
-      } catch (err) {
-        expect(await err.status).toBe(500);
-        server.close();
-      }
+      const res = await retryFetch(`http://127.0.0.1:${port}`);
+      expect(res.status).toBe(500);
+      server.close();
       return resolve();
     });
     server.on('error', reject);
