@@ -1,4 +1,4 @@
-# fetch-retry
+# fetch-retry [![CircleCI](https://circleci.com/gh/zeit/fetch-retry.svg?style=svg)](https://circleci.com/gh/zeit/fetch-retry)
 
 A layer on top of `fetch` (via [node-fetch](https://www.npmjs.com/package/node-fetch))
 with sensible defaults for retrying to prevent common errors.
