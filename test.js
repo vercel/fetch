@@ -28,7 +28,7 @@ test('retries upon 500', async () => {
   });
 });
 
-test('fails on >MAX_RETRIES', async () => {
+test('resolves on >MAX_RETRIES', async () => {
   const server = createServer((req, res) => {
     res.writeHead(500);
     res.end();
@@ -42,9 +42,8 @@ test('fails on >MAX_RETRIES', async () => {
       } catch (err) {
         expect(await err.status).toBe(500);
         server.close();
-        return resolve();
       }
-      reject(new Error('must fail'));
+      return resolve();
     });
     server.on('error', reject);
   });
@@ -71,9 +70,8 @@ test('accepts a custom onRetry option', async () => {
         expect(opts.onRetry.mock.calls[0][1]).toEqual(opts);
         expect(await err.status).toBe(500);
         server.close();
-        return resolve();
       }
-      reject(new Error('must fail'));
+      return resolve();
     });
     server.on('error', reject);
   });
