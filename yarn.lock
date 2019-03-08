@@ -53,7 +53,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@types/async-retry@1.2.1", "@types/async-retry@^1.2.1":
+"@types/async-retry@1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@types/async-retry/-/async-retry-1.2.1.tgz#fa9ac165907a8ee78f4924f4e393b656c65b5bb4"
   integrity sha512-yMQ6CVgICWtyFNBqJT3zqOc+TnqqEPLo4nKJNPFwcialiylil38Ie6q1ENeFTjvaLOkVim9K5LisHgAKJWidGQ==
@@ -113,9 +113,10 @@
   dependencies:
     "@zeit/dns-cached-resolve" "2.1.0"
 
-"@zeit/fetch-retry@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@zeit/fetch-retry/-/fetch-retry-3.0.0.tgz#c3efab8f97d928b2f1a2cff36be9739713083adb"
+"@zeit/fetch-retry@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@zeit/fetch-retry/-/fetch-retry-4.0.0.tgz#ad7fe06c4ceb3dcbd76c04db95b1b624ed6fcf3f"
+  integrity sha512-ALXnrCPpiVWha/L3Mm1klPhqmVTKmPQ2dmb5YIsSCrMBJugfhDb42kacVsvQ11vAFRE1LRaJ9Pmw16zEMvQnbw==
   dependencies:
     async-retry "^1.1.3"
     debug "^3.1.0"
