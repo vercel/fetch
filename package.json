@@ -1,6 +1,6 @@
 {
   "name": "@zeit/fetch",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Opinionated `fetch` optimized for use inside microservices",
   "license": "MIT",
   "main": "index.js",
