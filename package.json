@@ -1,6 +1,6 @@
 {
   "name": "@zeit/fetch-retry",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "devDependencies": {
     "jest": "^21.2.1",
     "node-fetch": "^1.7.3"
