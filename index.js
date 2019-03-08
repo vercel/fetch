@@ -32,11 +32,12 @@ function setup(fetch) {
 
     return retry(async (bail, attempt) => {
       const {method = 'GET'} = opts;
+      const isRetry = attempt < retryOpts.retries;
       try {
         // this will be retried
         const res = await fetch(url, opts);
         debug('status %d', res.status);
-        if (res.status >= 500 && res.status < 600) {
+        if (res.status >= 500 && res.status < 600 && isRetry) {
           const err = new Error(res.statusText);
           err.code = err.status = err.statusCode = res.status;
           err.url = url;
@@ -45,7 +46,7 @@ function setup(fetch) {
           return res;
         }
       } catch (err) {
-        debug(`${method} ${url} error (${err.status}). ${attempt < MAX_RETRIES ? 'retrying' : ''}`, err);
+        debug(`${method} ${url} error (${err.status}). ${isRetry ? 'retrying' : ''}`, err);
         throw err;
       }
     }, retryOpts)
