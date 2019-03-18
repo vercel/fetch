@@ -68,7 +68,12 @@ function setup(fetch) {
 		fetch = require('node-fetch');
 	}
 
-	fetch = fetch.default || fetch;
+	const fd = fetch.default;
+	if (fd) {
+		// combines "fetch.Headers" with "fetch.default" function.
+		// workaround for "fetch.Headers is not a constructor"
+		fetch = Object.assign((...args) => fd(...args), fd, fetch);
+	}
 
 	if (typeof fetch !== 'function') {
 		throw new Error(
