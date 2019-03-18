@@ -69,7 +69,8 @@ function setup(fetch) {
 	}
 
 	fetch = fetch.default
-		? Object.assign(fetch.default, fetch) // combines Headers with "fetch.default" function
+		// combines "fetch.Headers" with "fetch.default" function
+		? Object.assign((...args) => fetch.default(...args), fetch.default, fetch)
 		: fetch;
 
 	if (typeof fetch !== 'function') {
