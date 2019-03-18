@@ -70,7 +70,8 @@ function setup(fetch) {
 
 	const fd = fetch.default;
 	if (fd) {
-		// combines "fetch.Headers" with "fetch.default" function
+		// combines "fetch.Headers" with "fetch.default" function.
+		// workaround for "fetch.Headers is not a constructor"
 		fetch = Object.assign((...args) => fd(...args), fd, fetch);
 	}
 
