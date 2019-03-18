@@ -69,9 +69,10 @@ function setup(fetch) {
 	}
 
 	const fd = fetch.default;
-	fetch = fd // combines "fetch.Headers" with "fetch.default" function
-		? Object.assign((...args) => fd(...args), fd, fetch)
-		: fetch;
+	if (fd) {
+		// combines "fetch.Headers" with "fetch.default" function
+		fetch = Object.assign((...args) => fd(...args), fd, fetch);
+	}
 
 	if (typeof fetch !== 'function') {
 		throw new Error(
