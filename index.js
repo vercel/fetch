@@ -68,9 +68,10 @@ function setup(fetch) {
 		fetch = require('node-fetch');
 	}
 
+	const fd = fetch.default;
 	fetch = fetch.default
 		// combines "fetch.Headers" with "fetch.default" function
-		? Object.assign((...args) => fetch.default(...args), fetch.default, fetch)
+		? Object.assign((...args) => fd(...args), fd, fetch)
 		: fetch;
 
 	if (typeof fetch !== 'function') {
