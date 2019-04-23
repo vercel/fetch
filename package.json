@@ -1,6 +1,6 @@
 {
   "name": "@zeit/fetch-cached-dns",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A decorator on top of `fetch` that caches the DNS query of the `hostname` of the passed URL",
   "license": "MIT",
   "files": [
