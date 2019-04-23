@@ -3,6 +3,10 @@
   "version": "1.2.0",
   "description": "A decorator on top of `fetch` that caches the DNS query of the `hostname` of the passed URL",
   "license": "MIT",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
     "test": "jest test",
     "lint": "eslint .",
@@ -33,6 +37,7 @@
     "node-fetch": "*"
   },
   "dependencies": {
+    "@types/node-fetch": "2.3.2",
     "@zeit/dns-cached-resolve": "2.1.0"
   },
   "devDependencies": {
