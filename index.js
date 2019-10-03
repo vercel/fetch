@@ -18,13 +18,13 @@ let defaultHttpGlobalAgent;
 let defaultHttpsGlobalAgent;
 
 function getDefaultHttpGlobalAgent(agentOpts) {
-	return defaultHttpGlobalAgent = defaultHttpGlobalAgent
-		|| (debug('init http agent'), new HttpAgent(agentOpts));
+	return defaultHttpGlobalAgent = defaultHttpGlobalAgent ||
+		(debug('init http agent'), new HttpAgent(agentOpts));
 }
 
 function getDefaultHttpsGlobalAgent(agentOpts) {
-	return defaultHttpsGlobalAgent = defaultHttpsGlobalAgent
-		|| (debug('init https agent'), new HttpsAgent(agentOpts));
+	return defaultHttpsGlobalAgent = defaultHttpsGlobalAgent ||
+		(debug('init https agent'), new HttpsAgent(agentOpts));
 }
 
 function getAgent(url, agentOpts) {
