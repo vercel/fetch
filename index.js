@@ -6,39 +6,38 @@ const setupFetchCachedDns = require('@zeit/fetch-cached-dns');
 
 const {HttpsAgent} = HttpAgent;
 
-const AGENT_OPTS = {
+const AGENT_OPTIONS = {
 	maxSockets: 200,
 	maxFreeSockets: 20,
 	timeout: 60000,
+	freeSocketTimeout: 30000,
 	freeSocketKeepAliveTimeout: 30000 // free socket keepalive for 30 seconds
 };
 
 let defaultHttpGlobalAgent;
 let defaultHttpsGlobalAgent;
 
-function getDefaultHttpGlobalAgent() {
-	return (defaultHttpGlobalAgent =
-		defaultHttpGlobalAgent ||
-		(debug('init http agent'), new HttpAgent(AGENT_OPTS)));
+function getDefaultHttpGlobalAgent(agentOpts) {
+	return defaultHttpGlobalAgent = defaultHttpGlobalAgent
+		|| (debug('init http agent'), new HttpAgent(agentOpts));
 }
 
-function getDefaultHttpsGlobalAgent() {
-	return (defaultHttpsGlobalAgent =
-		defaultHttpsGlobalAgent ||
-		(debug('init https agent'), new HttpsAgent(AGENT_OPTS)));
+function getDefaultHttpsGlobalAgent(agentOpts) {
+	return defaultHttpsGlobalAgent = defaultHttpsGlobalAgent
+		|| (debug('init https agent'), new HttpsAgent(agentOpts));
 }
 
-function getAgent(url) {
+function getAgent(url, agentOpts) {
 	return /^https/.test(url)
-		? getDefaultHttpsGlobalAgent()
-		: getDefaultHttpGlobalAgent();
+		? getDefaultHttpsGlobalAgent(agentOpts)
+		: getDefaultHttpGlobalAgent(agentOpts);
 }
 
-function setupZeitFetch(fetch) {
+function setupZeitFetch(fetch, agentOpts = {}) {
 	return function zeitFetch(url, opts = {}) {
 		if (!opts.agent) {
 			// Add default `agent` if none was provided
-			opts.agent = getAgent(url);
+			opts.agent = getAgent(url, {AGENT_OPTIONS, ...agentOpts});
 		}
 
 		opts.redirect = 'manual';
@@ -63,7 +62,7 @@ function setupZeitFetch(fetch) {
 	};
 }
 
-function setup(fetch) {
+function setup(fetch, options) {
 	if (!fetch) {
 		fetch = require('node-fetch');
 	}
@@ -83,7 +82,7 @@ function setup(fetch) {
 
 	fetch = setupFetchCachedDns(fetch);
 	fetch = setupFetchRetry(fetch);
-	fetch = setupZeitFetch(fetch);
+	fetch = setupZeitFetch(fetch, options);
 	return fetch;
 }
 

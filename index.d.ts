@@ -1,9 +1,10 @@
-import { Agent } from 'http';
+import * as http from 'http';
+import * as https from 'http';
 import { Options as RetryOptions } from 'async-retry';
 import { Request, RequestInit, Response } from 'node-fetch';
 
 export type FetchOptions = RequestInit & {
-	agent?: Agent
+	agent?: https.Agent | http.Agent
 	retry?: RetryOptions
 }
 
@@ -12,5 +13,5 @@ export type Fetch = (
 	options?: FetchOptions
 ) => Promise<Response>;
 
-export default function SetupFetch(client?: Fetch): Fetch;
+export default function SetupFetch(client?: Fetch, agentOptions?: http.AgentOptions | https.AgentOptions): Fetch;
 export * from 'node-fetch';
