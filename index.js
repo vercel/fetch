@@ -1,4 +1,5 @@
 const {parse: parseUrl} = require('url');
+const {Readable} = require('stream');
 const HttpAgent = require('agentkeepalive');
 const debug = require('debug')('@zeit/fetch');
 const setupFetchRetry = require('@zeit/fetch-retry');
@@ -46,7 +47,7 @@ function setupZeitFetch(fetch, agentOpts = {}) {
 		opts.headers.set('host', opts.headers.get('host') || parseUrl(url).host);
 
 		// Convert Object bodies to JSON
-		if (opts.body && typeof opts.body === 'object' && !Buffer.isBuffer(opts.body)) {
+		if (opts.body && typeof opts.body === 'object' && !(Buffer.isBuffer(opts.body) || opts.body instanceof Readable)) {
 			opts.body = JSON.stringify(opts.body);
 			opts.headers.set('Content-Type', 'application/json');
 			opts.headers.set('Content-Length', Buffer.byteLength(opts.body));
