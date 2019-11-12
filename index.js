@@ -7,7 +7,7 @@ const setupFetchCachedDns = require('@zeit/fetch-cached-dns');
 const {HttpsAgent} = HttpAgent;
 
 const AGENT_OPTIONS = {
-	maxSockets: 200,
+	maxSockets: 50,
 	maxFreeSockets: 20,
 	timeout: 60000,
 	freeSocketTimeout: 30000,
