@@ -3,8 +3,8 @@ const debug = require('debug')('fetch-retry');
 
 // retry settings
 const MIN_TIMEOUT = 10;
-const MAX_RETRIES = 3;
-const FACTOR = 5;
+const MAX_RETRIES = 5;
+const FACTOR = 6;
 
 module.exports = setup;
 
@@ -15,7 +15,8 @@ function setup(fetch) {
 
   function fetchRetry(url, opts = {}) {
     const retryOpts = Object.assign({
-      // timeouts will be [ 10, 50, 250 ]
+      // timeouts will be [10, 60, 360, 2160, 12960]
+      // (before randomization is added)
       minTimeout: MIN_TIMEOUT,
       retries: MAX_RETRIES,
       factor: FACTOR,
