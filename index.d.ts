@@ -15,7 +15,7 @@ export type Fetch = (
 
 export type FetchModule = {
 	default: Fetch;
-	Headers: Headers;
+	Headers: typeof Headers;
 }
 
 export default function SetupFetch(
