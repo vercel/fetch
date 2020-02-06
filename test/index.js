@@ -3,6 +3,7 @@ const toBuffer = require('raw-body');
 const listen = require('async-listen');
 const {createServer} = require('http');
 const fetch = require('../index')();
+const url = require('url');
 
 exports.retriesUponHttp500 = async () => {
 	let i = 0;
@@ -55,4 +56,48 @@ exports.supportsBufferRequestBody = async () => {
 	const body = await res.json();
 	server.close();
 	assert.deepEqual(body, {body: 'foo'});
+};
+
+exports.supportsObjectRequestBody = async () => {
+	const server = createServer(async (req, res) => {
+		const body = await toBuffer(req);
+		assert(Buffer.isBuffer(body));
+		assert.deepEqual(JSON.parse(body.toString()), {foo: 'bar'});
+		assert.equal(
+			req.headers['content-type'],
+			'application/json'
+		);
+		res.end();
+	});
+	await listen(server);
+	const {port} = server.address();
+
+	const res = await fetch(`http://127.0.0.1:${port}`, {
+		method: 'POST',
+		body: {foo: 'bar'}
+	});
+	await res.text();
+	server.close();
+};
+
+exports.supportsSearchParamsRequestBody = async () => {
+	const server = createServer(async (req, res) => {
+		const body = await toBuffer(req);
+		assert(Buffer.isBuffer(body));
+		assert.equal(body.toString(), 'foo=bar');
+		assert.equal(
+			req.headers['content-type'],
+			'application/x-www-form-urlencoded;charset=UTF-8'
+		);
+		res.end();
+	});
+	await listen(server);
+	const {port} = server.address();
+
+	const res = await fetch(`http://127.0.0.1:${port}`, {
+		method: 'POST',
+		body: new url.URLSearchParams({foo: 'bar'})
+	});
+	await res.text();
+	server.close();
 };
