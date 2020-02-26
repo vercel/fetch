@@ -29,7 +29,7 @@ yielding `ECONNRESET`), and can easily and instantly be remediated
 by retrying.
 
 The default behavior of `fetch-retry` is to attempt retries **10**, **50**
-and **250** milliseconds (a total of 3 retires) after
+and **250** milliseconds (a total of 3 retries) after
 a *network error* or *5xx* error occur.
 
 The idea is to provide a sensible default: most applications should
