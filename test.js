@@ -87,3 +87,61 @@ test('accepts a custom onRetry option', async () => {
     server.on('error', reject);
   });
 })
+
+test('handles the Retry-After header', async () => {
+  const server = createServer((req, res) => {
+    res.writeHead(429, { 'Retry-After': 1 });
+    res.end();
+  });
+
+  return new Promise((resolve, reject) => {
+    server.listen(async () => {
+      const {port} = server.address();
+      try {
+        const startedAt = Date.now();
+        const res = await retryFetch(`http://127.0.0.1:${port}`, {
+          retry: {
+            minTimeout: 10,
+            retries: 1
+          }
+        });
+        expect(Date.now() - startedAt).toBeGreaterThanOrEqual(1010);
+        resolve();
+      } catch (err) {
+        reject(err);
+      } finally {
+        server.close();
+      }
+    });
+    server.on('error', reject);
+  });
+});
+
+test('stops retrying when the Retry-After header exceeds the maxRetryAfter option', async () => {
+  const server = createServer((req, res) => {
+    res.writeHead(429, { 'Retry-After': 21 });
+    res.end();
+  });
+
+  return new Promise((resolve, reject) => {
+    const opts = {
+      onRetry: jest.fn(),
+    }
+
+    server.listen(async () => {
+      const {port} = server.address();
+      try {
+        const startedAt = Date.now();
+        const res = await retryFetch(`http://127.0.0.1:${port}`, opts);
+        expect(opts.onRetry.mock.calls.length).toBe(0);
+        expect(res.status).toBe(429);
+        resolve();
+      } catch (err) {
+        reject(err);
+      } finally {
+        server.close();
+      }
+    });
+    server.on('error', reject);
+  });
+});

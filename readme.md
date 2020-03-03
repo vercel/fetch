@@ -19,8 +19,13 @@ module.exports = async () => {
 Make sure to `yarn add @zeit/fetch-retry` in your main package.
 
 Note that you can pass [retry options](https://github.com/zeit/async-retry) to using `opts.retry`.
-We also provide a `opts.onRetry` which is a customized version of `opts.retry.onRetry` and passes
+We also provide a `opts.onRetry` and `opts.retry.maxRetryAfter` options.
+
+`opts.onRetry` is a customized version of `opts.retry.onRetry` and passes
 not only the `error` object in each retry but also the current `opts` object.
+
+`opts.retry.maxRetryAfter` is the max wait time according to the `Retry-After` header.
+If it exceeds the option value, stop retrying and returns the error response. It defaults to `20`.
 
 ## Rationale
 
@@ -30,7 +35,7 @@ by retrying.
 
 The default behavior of `fetch-retry` is to attempt retries **10**, **60**
 **360**, **2160** and **12960** milliseconds (a total of 5 retries) after
-a *network error* or *5xx* error occur.
+a *network error*, *429* or *5xx* error occur.
 
 The idea is to provide a sensible default: most applications should
 continue to perform correctly with a worst case scenario of a given
