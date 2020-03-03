@@ -1,7 +1,11 @@
 import * as http from 'http';
 import * as https from 'http';
-import { Options as RetryOptions } from 'async-retry';
+import { Options as BaseRetryOptions } from 'async-retry';
 import { Request, RequestInit, Response } from 'node-fetch';
+
+export interface RetryOptions extends BaseRetryOptions {
+	maxRetryAfter?: number;
+}
 
 export type FetchOptions = RequestInit & {
 	agent?: https.Agent | http.Agent
