@@ -1,6 +1,6 @@
 {
   "name": "@zeit/fetch-retry",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "license": "MIT",
   "devDependencies": {
     "jest": "^21.2.1",
