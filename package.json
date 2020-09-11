@@ -45,7 +45,7 @@
     "async-listen": "1.0.0",
     "eslint": "5.14.1",
     "lint-staged": "8.1.4",
-    "node-fetch": "2.3.0",
+    "node-fetch": "2.6.1",
     "pre-commit": "1.2.2",
     "raw-body": "2.3.2"
   }
