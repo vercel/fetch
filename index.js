@@ -34,7 +34,7 @@ function getAgent(url, agentOpts) {
 }
 
 function setupZeitFetch(fetch, agentOpts = {}) {
-	return function zeitFetch(url, opts = {}) {
+	return async function zeitFetch(url, opts = {}) {
 		if (!opts.agent) {
 			// Add default `agent` if none was provided
 			opts.agent = getAgent(url, {AGENT_OPTIONS, ...agentOpts});
@@ -57,8 +57,14 @@ function setupZeitFetch(fetch, agentOpts = {}) {
 			redirectOpts.agent = getAgent(res.headers.get('Location'));
 		};
 
-		debug('%s %s', opts.method || 'GET', url);
-		return fetch(url, opts);
+		try {
+			debug('%s %s', opts.method || 'GET', url);
+			return await fetch(url, opts);
+		} catch (err) {
+			err.url = url;
+			err.opts = opts;
+			throw err;
+		}
 	};
 }
 
