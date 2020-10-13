@@ -1,3 +1,4 @@
+const assert = require('assert');
 const {createServer} =  require('http');
 const setup = require('./index');
 
@@ -144,4 +145,21 @@ test('stops retrying when the Retry-After header exceeds the maxRetryAfter optio
     });
     server.on('error', reject);
   });
+});
+
+test('stops retrying when fetch throws `ERR_UNESCAPED_CHARACTERS` error', async () => {
+  const opts = {
+    onRetry: jest.fn(),
+  }
+
+  let err;
+  try {
+    await retryFetch(`http://127.0.0.1/\u0019`, opts);
+  } catch (_err) {
+    err = _err;
+  }
+
+  assert(err);
+  assert.equal(err.code, 'ERR_UNESCAPED_CHARACTERS');
+  assert.equal(opts.onRetry.mock.calls.length, 0);
 });

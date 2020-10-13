@@ -55,8 +55,12 @@ function setup(fetch) {
             return res;
           }
         } catch (err) {
-          const isRetry = attempt <= retryOpts.retries;
-          debug(`${method} ${url} error (${err.status}). ${isRetry ? 'retrying' : ''}`, err);
+          const isClientError = err && err.code === 'ERR_UNESCAPED_CHARACTERS';
+          const isRetry = !isClientError && attempt <= retryOpts.retries;
+          debug(`${method} ${url} error (status = ${err.status}). ${isRetry ? 'retrying' : ''}`, err);
+          if (isClientError) {
+            return bail(err);
+          }
           throw err;
         }
       }, retryOpts);
