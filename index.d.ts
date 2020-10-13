@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as https from 'http';
 import { Options as BaseRetryOptions } from 'async-retry';
-import { Request, RequestInit, Response } from 'node-fetch';
+import { Headers, Request, RequestInit, Response } from 'node-fetch';
 
 export interface RetryOptions extends BaseRetryOptions {
 	maxRetryAfter?: number;
@@ -17,5 +17,14 @@ export type Fetch = (
 	options?: FetchOptions
 ) => Promise<Response>;
 
-export default function SetupFetch(client?: Fetch, agentOptions?: http.AgentOptions | https.AgentOptions): Fetch;
+export type FetchModule = {
+	default: Fetch;
+	Headers: typeof Headers;
+}
+
+export default function SetupFetch(
+	fetchModule?: FetchModule,
+	agentOptions?: http.AgentOptions | https.AgentOptions
+): Fetch;
+
 export * from 'node-fetch';
