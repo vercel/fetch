@@ -25,8 +25,8 @@ exports.retriesUponHttp500 = async () => {
 };
 
 exports.worksWithHttps = async () => {
-	const res = await fetch('https://zeit.co');
-	assert.equal(res.headers.get('Server'), 'now');
+	const res = await fetch('https://vercel.com');
+	assert.equal(res.headers.get('Server'), 'Vercel');
 };
 
 /**
@@ -35,8 +35,8 @@ exports.worksWithHttps = async () => {
  * happens
  */
 exports.switchesAgentsOnRedirect = async () => {
-	const res = await fetch('http://zeit.co');
-	assert.equal(res.url, 'https://zeit.co/');
+	const res = await fetch('http://vercel.com');
+	assert.equal(res.url, 'https://vercel.com/');
 };
 
 exports.supportsBufferRequestBody = async () => {
@@ -100,4 +100,18 @@ exports.supportsSearchParamsRequestBody = async () => {
 	});
 	await res.text();
 	server.close();
+};
+
+exports.errorContext = async () => {
+	let err;
+	const url = `http://127.0.0.1/\u0019`;
+	try {
+		await fetch(url);
+	} catch (_err) {
+		err = _err;
+	}
+	assert(err);
+	assert.equal(err.code, 'ERR_UNESCAPED_CHARACTERS');
+	assert.equal(err.url, url);
+	assert.equal(err.opts.redirect, 'manual');
 };

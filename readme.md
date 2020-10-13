@@ -20,8 +20,18 @@ if not provided, with the following settings:
 
 ## How to use
 
+JavaScript
+
 ```js
 const fetch = require('@zeit/fetch')(require('some-fetch-implementation'))
+```
+
+TypeScript
+
+```typescript
+import createFetch from "@zeit/fetch"
+import * as fetch from "some-fetch-implementation";
+const fetch = createFetch(fetch);
 ```
 
 If no fetch implementation is supplied, it will attempt to use peerDep `node-fetch`.
