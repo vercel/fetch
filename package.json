@@ -1,6 +1,6 @@
 {
   "name": "@zeit/fetch",
-  "version": "5.2.0",
+  "version": "6.0.0",
   "description": "Opinionated `fetch` optimized for use inside microservices",
   "license": "MIT",
   "main": "index.js",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@types/async-retry": "1.2.1",
     "@zeit/fetch-cached-dns": "1.2.0",
-    "@zeit/fetch-retry": "^4.1.0",
+    "@zeit/fetch-retry": "^5.0.0",
     "agentkeepalive": "3.4.1",
     "debug": "3.1.0"
   },
