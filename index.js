@@ -3,8 +3,10 @@ const HttpAgent = require('agentkeepalive');
 const debug = require('debug')('@zeit/fetch');
 const setupFetchRetry = require('@zeit/fetch-retry');
 const setupFetchCachedDns = require('@zeit/fetch-cached-dns');
+const urlModule = require('url');
 
 const {HttpsAgent} = HttpAgent;
+const {URLSearchParams} = urlModule;
 
 const AGENT_OPTIONS = {
 	maxSockets: 200,
@@ -45,8 +47,13 @@ function setupZeitFetch(fetch, agentOpts = {}) {
 		// Workaround for node-fetch + agentkeepalive bug/issue
 		opts.headers.set('host', opts.headers.get('host') || parseUrl(url).host);
 
-		// Convert Object bodies to JSON
-		if (opts.body && typeof opts.body === 'object' && !Buffer.isBuffer(opts.body)) {
+		// Convert Object bodies to JSON if they are JS objects
+		if (
+			opts.body &&
+			!(opts.body instanceof URLSearchParams) &&
+			typeof opts.body === 'object' &&
+			!Buffer.isBuffer(opts.body)
+		) {
 			opts.body = JSON.stringify(opts.body);
 			opts.headers.set('Content-Type', 'application/json');
 			opts.headers.set('Content-Length', Buffer.byteLength(opts.body));
