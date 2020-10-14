@@ -1,5 +1,5 @@
 {
-  "name": "@zeit/fetch",
+  "name": "@vercel/fetch",
   "version": "6.0.0",
   "description": "Opinionated `fetch` optimized for use inside microservices",
   "license": "MIT",
