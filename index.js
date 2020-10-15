@@ -9,33 +9,44 @@ const FACTOR = 6;
 
 module.exports = exports = setup;
 
+function isClientError(err) {
+  if (!err) return false;
+  return (
+    err.code === 'ERR_UNESCAPED_CHARACTERS' ||
+    err.message === 'Request path contains unescaped characters'
+  );
+}
+
 function setup(fetch) {
   if (!fetch) {
     fetch = require('node-fetch');
   }
 
   async function fetchRetry(url, opts = {}) {
-    const retryOpts = Object.assign({
-      // timeouts will be [10, 60, 360, 2160, 12960]
-      // (before randomization is added)
-      minTimeout: MIN_TIMEOUT,
-      retries: MAX_RETRIES,
-      factor: FACTOR,
-      maxRetryAfter: MAX_RETRY_AFTER,
-    }, opts.retry);
+    const retryOpts = Object.assign(
+      {
+        // timeouts will be [10, 60, 360, 2160, 12960]
+        // (before randomization is added)
+        minTimeout: MIN_TIMEOUT,
+        retries: MAX_RETRIES,
+        factor: FACTOR,
+        maxRetryAfter: MAX_RETRY_AFTER,
+      },
+      opts.retry
+    );
 
     if (opts.onRetry) {
-      retryOpts.onRetry = error => {
+      retryOpts.onRetry = (error) => {
         opts.onRetry(error, opts);
         if (opts.retry && opts.retry.onRetry) {
           opts.retry.onRetry(error);
         }
-      }
+      };
     }
 
     try {
       return await retry(async (bail, attempt) => {
-        const {method = 'GET'} = opts;
+        const { method = 'GET' } = opts;
         try {
           // this will be retried
           const res = await fetch(url, opts);
@@ -47,7 +58,7 @@ function setup(fetch) {
               if (retryAfter > retryOpts.maxRetryAfter) {
                 return res;
               } else {
-                await new Promise(r => setTimeout(r, retryAfter * 1e3));
+                await new Promise((r) => setTimeout(r, retryAfter * 1e3));
               }
             }
             throw new ResponseError(res);
@@ -55,10 +66,15 @@ function setup(fetch) {
             return res;
           }
         } catch (err) {
-          const isClientError = err && err.code === 'ERR_UNESCAPED_CHARACTERS';
-          const isRetry = !isClientError && attempt <= retryOpts.retries;
-          debug(`${method} ${url} error (status = ${err.status}). ${isRetry ? 'retrying' : ''}`, err);
-          if (isClientError) {
+          const clientError = isClientError(err);
+          const isRetry = !clientError && attempt <= retryOpts.retries;
+          debug(
+            `${method} ${url} error (status = ${err.status}). ${
+              isRetry ? 'retrying' : ''
+            }`,
+            err
+          );
+          if (clientError) {
             return bail(err);
           }
           throw err;

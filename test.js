@@ -160,6 +160,6 @@ test('stops retrying when fetch throws `ERR_UNESCAPED_CHARACTERS` error', async 
   }
 
   assert(err);
-  assert.equal(err.code, 'ERR_UNESCAPED_CHARACTERS');
+  assert.equal(err.message, 'Request path contains unescaped characters');
   assert.equal(opts.onRetry.mock.calls.length, 0);
 });
