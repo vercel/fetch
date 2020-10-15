@@ -74,7 +74,7 @@ test('works with relative redirects', async () => {
 
 test('works with `headers` as an Object', async () => {
   const server = createServer((req, res) => {
-    res.end(req.headers['x-zeit'])
+    res.end(req.headers['x-vercel'])
   })
 
   await listen(server)
@@ -82,7 +82,7 @@ test('works with `headers` as an Object', async () => {
 
   const res = await cachedDNSFetch(`http://localtest.me:${port}`, {
     headers: {
-      'X-Zeit': 'geist'
+      'X-Vercel': 'geist'
     }
   })
   expect(await res.text()).toBe('geist')

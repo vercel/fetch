@@ -5,7 +5,7 @@ A decorator on top of `fetch` that caches the DNS query of the `hostname` of the
 ## How to use
 
 ```js
-const fetch = require('@zeit/fetch-cached-dns')(require('node-fetch'))
+const fetch = require('@vercel/fetch-cached-dns')(require('node-fetch'))
 ```
 
 Since this implementation is implementing redirects we are providing an `onRedirect` extra 
