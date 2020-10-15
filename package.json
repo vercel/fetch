@@ -4,7 +4,7 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^21.2.1",
-    "node-fetch": "^1.7.3"
+    "node-fetch": "^2.6.1"
   },
   "peerDependencies": {
     "node-fetch": "*"
