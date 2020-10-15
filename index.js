@@ -1,7 +1,7 @@
 const {parse: parseUrl} = require('url');
 const HttpAgent = require('agentkeepalive');
 const debug = require('debug')('@vercel/fetch');
-const setupFetchRetry = require('@zeit/fetch-retry');
+const setupFetchRetry = require('@vercel/fetch-retry');
 const setupFetchCachedDns = require('@zeit/fetch-cached-dns');
 const urlModule = require('url');
 

@@ -79,6 +79,14 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
   integrity sha512-fh+pAqt4xRzPfqA6eh3Z2y6fyZavRIumvjhaCL753+TVkGKGhpPeyrJG2JftD0T9q4GF00KjefsQ+PQNDdWQaQ==
 
+"@vercel/fetch-retry@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@vercel/fetch-retry/-/fetch-retry-5.0.2.tgz#1b625163f3470b6e17bbbe38bd8b68a50ab1ccd3"
+  integrity sha512-QdwEwXzvf9OXPnqPfvweOmeFMWdhlWuWYOzIB3TjqzQxCWLDVtxzmHsfSQvWen86Z8CYkvyB9GMj8Zux5uEwmg==
+  dependencies:
+    async-retry "^1.3.1"
+    debug "^3.1.0"
+
 "@zeit/best@0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@zeit/best/-/best-0.5.2.tgz#7027cecdecb9e9b584100de6bc9d5ea68d943963"
@@ -123,14 +131,6 @@
   integrity sha512-fEKOrDQJy3CewywYVwe2mHsv3H1rITmkfB68h2TiVOz6QWWuXU0C5xBIFG9Ov59sioEQdlk5829PXwJYyx6X0A==
   dependencies:
     "@zeit/dns-cached-resolve" "2.1.0"
-
-"@zeit/fetch-retry@^5.0.0":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@zeit/fetch-retry/-/fetch-retry-5.0.1.tgz#5d9d486d5c523fda6622050d6e054a0b5562ce60"
-  integrity sha512-pypvAakip4gLrLDlYbyLDEbRk01YU2mFuJ87/BofZ/JqtCZf7NsIzbFgiqqaI93RxM9ZZIAQ9h373betrdR/YQ==
-  dependencies:
-    async-retry "^1.3.1"
-    debug "^3.1.0"
 
 acorn-jsx@^5.0.0:
   version "5.3.1"

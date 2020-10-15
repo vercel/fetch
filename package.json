@@ -20,8 +20,8 @@
   "homepage": "https://github.com/zeit/fetch#readme",
   "dependencies": {
     "@types/async-retry": "1.2.1",
+    "@vercel/fetch-retry": "^5.0.2",
     "@zeit/fetch-cached-dns": "1.2.0",
-    "@zeit/fetch-retry": "^5.0.0",
     "agentkeepalive": "3.4.1",
     "debug": "3.1.0"
   },

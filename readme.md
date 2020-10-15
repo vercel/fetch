@@ -4,7 +4,7 @@
 
 Opinionated `fetch` optimized for use inside microservices. Bundles:
 
--   https://github.com/zeit/fetch-retry
+-   https://github.com/vercel/fetch-retry
 -   https://github.com/zeit/fetch-cached-dns
 -   https://github.com/node-modules/agentkeepalive
 
