@@ -1,6 +1,6 @@
 {
   "name": "@vercel/fetch-retry",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "license": "MIT",
   "devDependencies": {
     "jest": "^21.2.1",
