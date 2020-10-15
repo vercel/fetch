@@ -1,5 +1,5 @@
 {
-  "name": "@zeit/fetch-retry",
+  "name": "@vercel/fetch-retry",
   "version": "5.0.1",
   "license": "MIT",
   "devDependencies": {

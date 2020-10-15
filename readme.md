@@ -1,4 +1,4 @@
-# fetch-retry [![CircleCI](https://circleci.com/gh/zeit/fetch-retry.svg?style=svg)](https://circleci.com/gh/zeit/fetch-retry)
+# fetch-retry [![CircleCI](https://circleci.com/gh/vercel/fetch-retry.svg?style=svg)](https://circleci.com/gh/vercel/fetch-retry)
 
 A layer on top of `fetch` (via [node-fetch](https://www.npmjs.com/package/node-fetch))
 with sensible defaults for retrying to prevent common errors.
@@ -8,7 +8,7 @@ with sensible defaults for retrying to prevent common errors.
 `fetch-retry` is a drop-in replacement for `fetch`:
 
 ```js
-const fetch = require('@zeit/fetch-retry')(require('node-fetch'))
+const fetch = require('@vercel/fetch-retry')(require('node-fetch'))
 
 module.exports = async () => {
   const res = await fetch('http://localhost:3000')
@@ -16,9 +16,9 @@ module.exports = async () => {
 }
 ```
 
-Make sure to `yarn add @zeit/fetch-retry` in your main package.
+Make sure to `yarn add @vercel/fetch-retry` in your main package.
 
-Note that you can pass [retry options](https://github.com/zeit/async-retry) to using `opts.retry`.
+Note that you can pass [retry options](https://github.com/vercel/async-retry) to using `opts.retry`.
 We also provide a `opts.onRetry` and `opts.retry.maxRetryAfter` options.
 
 `opts.onRetry` is a customized version of `opts.retry.onRetry` and passes
