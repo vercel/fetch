@@ -37,7 +37,10 @@
     ]
   },
   "eslintConfig": {
-    "extends": "@zeit/eslint-config-node"
+    "extends": "@zeit/eslint-config-node",
+    "rules": {
+      "linebreak-style": 0
+    }
   },
   "devDependencies": {
     "@zeit/best": "0.5.2",

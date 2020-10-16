@@ -1,6 +1,6 @@
 # @vercel/fetch
 
-[![Build Status](https://circleci.com/gh/vercel/fetch.png?style=shield&circle-token=20150f42468743f4b8cfb803681cd9a1847ce3f8)](https://circleci.com/gh/vercel/fetch)
+[![Build Status](https://github.com/vercel/fetch/workflows/Node%20CI/badge.svg)](https://github.com/vercel/fetch/actions?workflow=Node+CI)
 
 Opinionated `fetch` optimized for use inside microservices. Bundles:
 
