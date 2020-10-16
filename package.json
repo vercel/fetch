@@ -5,7 +5,8 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "util.js"
   ],
   "scripts": {
     "test": "jest test",
