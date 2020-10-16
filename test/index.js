@@ -111,7 +111,7 @@ exports.errorContext = async () => {
 		err = _err;
 	}
 	assert(err);
-	assert.equal(err.code, 'ERR_UNESCAPED_CHARACTERS');
+	assert.equal(err.message, 'Request path contains unescaped characters');
 	assert.equal(err.url, url);
 	assert.equal(err.opts.redirect, 'manual');
 };
