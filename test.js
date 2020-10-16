@@ -1,6 +1,7 @@
 /* eslint-env jest*/
 const listen = require('async-listen')
 const { createServer } = require('http')
+const { dnsCachedUrl } = require('./util')
 const cachedDNSFetch = require('./index')(require('node-fetch'))
 
 /**
@@ -10,15 +11,23 @@ const cachedDNSFetch = require('./index')(require('node-fetch'))
 
 test('works with localtest.me', async () => {
   const server = createServer((req, res) => {
-    res.end('ha')
+    res.end(JSON.stringify({ url: req.url, headers: req.headers }))
   })
 
   await listen(server)
   const { port } = server.address()
 
-  const res = await cachedDNSFetch(`http://localtest.me:${port}`)
-  expect(await res.text()).toBe('ha')
-  server.close()
+  try {
+    const host = `localtest.me:${port}`
+    const res = await cachedDNSFetch(`http://${host}`)
+    const body = await res.json()
+    expect(res.url).toBe(`http://${host}/`)
+    expect(res[dnsCachedUrl]).toBe(`http://127.0.0.1:${port}/`)
+    expect(body.url).toBe(`/`)
+    expect(body.headers.host).toBe(host)
+  } finally {
+    server.close()
+  }
 })
 
 test('works with absolute redirects', async () => {
@@ -40,36 +49,50 @@ test('works with absolute redirects', async () => {
   portA = serverA.address().port
   portB = serverB.address().port
 
-  const res = await cachedDNSFetch(`http://localtest.me:${portA}`)
-  expect(await res.status).toBe(200)
-  expect(await res.text()).toBe(`localtest.me:${portB}`)
-
-  serverA.close()
-  serverB.close()
+  try {
+    const res = await cachedDNSFetch(`http://localtest.me:${portA}`)
+    expect(res.url).toBe(`http://localtest.me:${portB}/`)
+    expect(res[dnsCachedUrl]).toBe(`http://127.0.0.1:${portB}/`)
+    expect(await res.status).toBe(200)
+    expect(await res.text()).toBe(`localtest.me:${portB}`)
+  } finally {
+    serverA.close()
+    serverB.close()
+  }
 })
 
 test('works with relative redirects', async () => {
   let count = 0
   const server = createServer((req, res) => {
-    if (count === 0) {
+    if (count++ === 0) {
       res.setHeader('Location', `/foo`)
       res.statusCode = 302
       res.end()
     } else {
-      res.end(req.url)
+      res.end(
+        JSON.stringify({
+          url: req.url,
+          headers: req.headers
+        })
+      )
     }
-    count++
   })
-
   await listen(server)
   const { port } = server.address()
 
-  const res = await cachedDNSFetch(`http://localtest.me:${port}`)
-  expect(count).toBe(2)
-  expect(await res.status).toBe(200)
-  expect(await res.text()).toBe(`/foo`)
-
-  server.close()
+  try {
+    const host = `localtest.me:${port}`
+    const res = await cachedDNSFetch(`http://${host}`)
+    expect(count).toBe(2)
+    expect(res.url).toBe(`http://${host}/foo`)
+    expect(res[dnsCachedUrl]).toBe(`http://127.0.0.1:${port}/foo`)
+    expect(await res.status).toBe(200)
+    const body = await res.json()
+    expect(body.url).toBe(`/foo`)
+    expect(body.headers.host).toBe(host)
+  } finally {
+    server.close()
+  }
 })
 
 test('works with `headers` as an Object', async () => {
@@ -80,13 +103,16 @@ test('works with `headers` as an Object', async () => {
   await listen(server)
   const { port } = server.address()
 
-  const res = await cachedDNSFetch(`http://localtest.me:${port}`, {
-    headers: {
-      'X-Vercel': 'geist'
-    }
-  })
-  expect(await res.text()).toBe('geist')
-  server.close()
+  try {
+    const res = await cachedDNSFetch(`http://localtest.me:${port}`, {
+      headers: {
+        'X-Vercel': 'geist'
+      }
+    })
+    expect(await res.text()).toBe('geist')
+  } finally {
+    server.close()
+  }
 })
 
 test('works with `onRedirect` option to customize opts', async () => {
@@ -106,18 +132,20 @@ test('works with `onRedirect` option to customize opts', async () => {
   await listen(server)
   const { port } = server.address()
 
-  const options = {
-    onRedirect: jest.fn((res, opts) => {
-      opts.randomOption = true
-    })
+  try {
+    const options = {
+      onRedirect: jest.fn((res, opts) => {
+        opts.randomOption = true
+      })
+    }
+
+    await cachedDNSFetch(`http://localtest.me:${port}`, options)
+    expect(options.onRedirect.mock.calls.length).toBe(1)
+    const [res, opts] = options.onRedirect.mock.calls[0]
+    expect(res.status).toEqual(302)
+    expect(opts.headers).toBeDefined()
+    expect(opts.randomOption).toBe(true)
+  } finally {
+    server.close()
   }
-
-  await cachedDNSFetch(`http://localtest.me:${port}`, options)
-  expect(options.onRedirect.mock.calls.length).toBe(1)
-  const [res, opts] = options.onRedirect.mock.calls[0]
-  expect(res.status).toEqual(302)
-  expect(opts.headers).toBeDefined()
-  expect(opts.randomOption).toBe(true)
-
-  server.close()
 })
