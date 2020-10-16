@@ -91,10 +91,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
   integrity sha512-fh+pAqt4xRzPfqA6eh3Z2y6fyZavRIumvjhaCL753+TVkGKGhpPeyrJG2JftD0T9q4GF00KjefsQ+PQNDdWQaQ==
 
-"@vercel/fetch-cached-dns@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@vercel/fetch-cached-dns/-/fetch-cached-dns-2.0.0.tgz#c0459d168cb475118060c8b91c39f51e5b1eb81e"
-  integrity sha512-gT3GOnIjAMD0+VbOv/TJt2pPKYn1KxwbVyhImC+O8rGm8iLIfk0pLGMhuOL7qshvle11QZ1g2U02e8qLu27nLw==
+"@vercel/fetch-cached-dns@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@vercel/fetch-cached-dns/-/fetch-cached-dns-2.0.1.tgz#b929ba5b4b6f7108abf49adaf03309159047c134"
+  integrity sha512-4a2IoekfGUgV/dinAB7Tx5oqA+Pg9I/6x/t8n/yduHmdclP5EdWTN4gPrwOKVECKVn2pV1VxAT8q4toSzwa2Eg==
   dependencies:
     "@types/node-fetch" "2.3.2"
     "@zeit/dns-cached-resolve" "2.1.0"
