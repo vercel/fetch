@@ -74,15 +74,35 @@
   resolved "https://registry.yarnpkg.com/@types/lru-cache/-/lru-cache-4.1.1.tgz#b2d87a5e3df8d4b18ca426c5105cd701c2306d40"
   integrity sha512-8mNEUG6diOrI6pMqOHrHPDBB1JsrpedeMK9AWGzVCQ7StRRribiT9BRvUmF8aUws9iBbVlgVekOT5Sgzc1MTKw==
 
+"@types/node-fetch@2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.3.2.tgz#e01893b176c6fa1367743726380d65bce5d6576b"
+  integrity sha512-yW0EOebSsQme9yKu09XbdDfle4/SmWZMK4dfteWcSLCYNQQcF+YOv0kIrvm+9pO11/ghA4E6A+RNQqvYj4Nr3A==
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "14.11.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.11.10.tgz#8c102aba13bf5253f35146affbf8b26275069bef"
+  integrity sha512-yV1nWZPlMFpoXyoknm4S56y2nlTAuFYaJuQtYRAOU7xA/FJ9RY0Xm7QOkaYMMmr8ESdHIuUb6oQgR/0+2NqlyA==
+
 "@types/node@10.12.18":
   version "10.12.18"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
   integrity sha512-fh+pAqt4xRzPfqA6eh3Z2y6fyZavRIumvjhaCL753+TVkGKGhpPeyrJG2JftD0T9q4GF00KjefsQ+PQNDdWQaQ==
 
+"@vercel/fetch-cached-dns@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@vercel/fetch-cached-dns/-/fetch-cached-dns-2.0.0.tgz#c0459d168cb475118060c8b91c39f51e5b1eb81e"
+  integrity sha512-gT3GOnIjAMD0+VbOv/TJt2pPKYn1KxwbVyhImC+O8rGm8iLIfk0pLGMhuOL7qshvle11QZ1g2U02e8qLu27nLw==
+  dependencies:
+    "@types/node-fetch" "2.3.2"
+    "@zeit/dns-cached-resolve" "2.1.0"
+
 "@vercel/fetch-retry@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@vercel/fetch-retry/-/fetch-retry-5.0.2.tgz#1b625163f3470b6e17bbbe38bd8b68a50ab1ccd3"
-  integrity sha512-QdwEwXzvf9OXPnqPfvweOmeFMWdhlWuWYOzIB3TjqzQxCWLDVtxzmHsfSQvWen86Z8CYkvyB9GMj8Zux5uEwmg==
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@vercel/fetch-retry/-/fetch-retry-5.0.3.tgz#cce5d23f6e64f6f525c24e2ac7c78f65d6c5b1f4"
+  integrity sha512-DIIoBY92r+sQ6iHSf5WjKiYvkdsDIMPWKYATlE0KcUAj2RV6SZK9UWpUzBRKsofXqedOqpVjrI0IE6AWL7JRtg==
   dependencies:
     async-retry "^1.3.1"
     debug "^3.1.0"
@@ -124,13 +144,6 @@
   integrity sha512-E1bokneUXBxm8OVwSEzN52zq9G3NxqwYNJmJs7MuHtJkTLXprY1hpTdBwl6l3ikDfI5zfUEBx03mrG483Mv1vQ==
   dependencies:
     "@zeit/eslint-config-base" "0.2.13"
-
-"@zeit/fetch-cached-dns@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@zeit/fetch-cached-dns/-/fetch-cached-dns-1.2.0.tgz#2529bea33732df1044f72465b8f7760af7b53d46"
-  integrity sha512-fEKOrDQJy3CewywYVwe2mHsv3H1rITmkfB68h2TiVOz6QWWuXU0C5xBIFG9Ov59sioEQdlk5829PXwJYyx6X0A==
-  dependencies:
-    "@zeit/dns-cached-resolve" "2.1.0"
 
 acorn-jsx@^5.0.0:
   version "5.3.1"

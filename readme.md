@@ -5,7 +5,7 @@
 Opinionated `fetch` optimized for use inside microservices. Bundles:
 
 -   https://github.com/vercel/fetch-retry
--   https://github.com/zeit/fetch-cached-dns
+-   https://github.com/vercel/fetch-cached-dns
 -   https://github.com/node-modules/agentkeepalive
 
 It automatically configures an `agent` via [agentkeepalive](https://github.com/node-modules/agentkeepalive),
