@@ -63,10 +63,7 @@ exports.supportsObjectRequestBody = async () => {
 		const body = await toBuffer(req);
 		assert(Buffer.isBuffer(body));
 		assert.deepEqual(JSON.parse(body.toString()), {foo: 'bar'});
-		assert.equal(
-			req.headers['content-type'],
-			'application/json'
-		);
+		assert.equal(req.headers['content-type'], 'application/json');
 		res.end();
 	});
 	await listen(server);
@@ -104,14 +101,14 @@ exports.supportsSearchParamsRequestBody = async () => {
 
 exports.errorContext = async () => {
 	let err;
-	const url = `http://127.0.0.1/\u0019`;
+	const u = `http://127.0.0.1/\u0019`;
 	try {
-		await fetch(url);
+		await fetch(u);
 	} catch (_err) {
 		err = _err;
 	}
 	assert(err);
 	assert.equal(err.message, 'Request path contains unescaped characters');
-	assert.equal(err.url, url);
+	assert.equal(err.url, u);
 	assert.equal(err.opts.redirect, 'manual');
 };

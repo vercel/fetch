@@ -1,5 +1,5 @@
 {
-  "name": "@zeit/fetch",
+  "name": "@vercel/fetch",
   "version": "6.0.0",
   "description": "Opinionated `fetch` optimized for use inside microservices",
   "license": "MIT",
@@ -11,17 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zeit/fetch.git"
+    "url": "git+https://github.com/vercel/fetch.git"
   },
-  "author": "Nathan Rajlich <nate@zeit.co>",
+  "author": "Nathan Rajlich <nate@vercel.com>",
   "bugs": {
-    "url": "https://github.com/zeit/fetch/issues"
+    "url": "https://github.com/vercel/fetch/issues"
   },
-  "homepage": "https://github.com/zeit/fetch#readme",
+  "homepage": "https://github.com/vercel/fetch#readme",
   "dependencies": {
     "@types/async-retry": "1.2.1",
-    "@zeit/fetch-cached-dns": "1.2.0",
-    "@zeit/fetch-retry": "^5.0.0",
+    "@vercel/fetch-cached-dns": "^2.0.1",
+    "@vercel/fetch-retry": "^5.0.2",
     "agentkeepalive": "3.4.1",
     "debug": "3.1.0"
   },

@@ -8,9 +8,9 @@ export interface RetryOptions extends BaseRetryOptions {
 }
 
 export type FetchOptions = RequestInit & {
-	agent?: https.Agent | http.Agent
-	retry?: RetryOptions
-}
+	agent?: https.Agent | http.Agent;
+	retry?: RetryOptions;
+};
 
 export type Fetch = (
 	url: string | Request,
@@ -20,7 +20,7 @@ export type Fetch = (
 export type FetchModule = {
 	default: Fetch;
 	Headers: typeof Headers;
-}
+};
 
 export default function SetupFetch(
 	fetchModule?: FetchModule,

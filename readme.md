@@ -1,18 +1,18 @@
-# @zeit/fetch
+# @vercel/fetch
 
 [![Build Status](https://github.com/vercel/fetch/workflows/Node%20CI/badge.svg)](https://github.com/vercel/fetch/actions?workflow=Node+CI)
 
 Opinionated `fetch` optimized for use inside microservices. Bundles:
 
-- https://github.com/zeit/fetch-retry
-- https://github.com/zeit/fetch-cached-dns
-- https://github.com/node-modules/agentkeepalive
+-   https://github.com/vercel/fetch-retry
+-   https://github.com/vercel/fetch-cached-dns
+-   https://github.com/node-modules/agentkeepalive
 
 It automatically configures an `agent` via [agentkeepalive](https://github.com/node-modules/agentkeepalive),
 if not provided, with the following settings:
 
 | Name                         | Value |
-|------------------------------|-------|
+| ---------------------------- | ----- |
 | `maxSockets`                 | 200   |
 | `maxFreeSockets`             | 20    |
 | `timeout`                    | 60000 |
@@ -23,14 +23,14 @@ if not provided, with the following settings:
 JavaScript
 
 ```js
-const fetch = require('@zeit/fetch')(require('some-fetch-implementation'))
+const fetch = require('@vercel/fetch')(require('some-fetch-implementation'));
 ```
 
 TypeScript
 
 ```typescript
-import createFetch from "@zeit/fetch"
-import * as fetch from "some-fetch-implementation";
+import createFetch from '@vercel/fetch';
+import * as fetch from 'some-fetch-implementation';
 const fetch = createFetch(fetch);
 ```
 
