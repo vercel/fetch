@@ -66,6 +66,9 @@ function setup(fetch) {
             return res;
           }
         } catch (err) {
+          if (err.type === 'aborted') {
+            return bail(err);
+          }
           const clientError = isClientError(err);
           const isRetry = !clientError && attempt <= retryOpts.retries;
           debug(

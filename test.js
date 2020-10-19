@@ -1,5 +1,6 @@
 const assert = require('assert');
-const {createServer} =  require('http');
+const {createServer} = require('http');
+const AbortController = require('abort-controller');
 const setup = require('./index');
 
 const { ResponseError } = setup;
@@ -162,4 +163,41 @@ test('stops retrying when fetch throws `ERR_UNESCAPED_CHARACTERS` error', async 
   assert(err);
   assert.equal(err.message, 'Request path contains unescaped characters');
   assert.equal(opts.onRetry.mock.calls.length, 0);
+});
+
+test("don't retry if the request was aborted after timeout", async () => {
+  const timeout = 50;
+  const responseAfter = 100;
+  const server = createServer((req, res) => {
+    setTimeout(() => {
+      res.end('ha');
+    }, responseAfter);
+  });
+
+  const controller = new AbortController();
+  const timeoutHandler = setTimeout(() => {
+    controller.abort();
+  }, timeout);
+
+  const opts = {
+    onRetry: jest.fn(),
+    signal: controller.signal,
+  };
+
+  return new Promise((resolve, reject) => {
+    server.listen(async () => {
+      try {
+        const { port } = server.address();
+        await retryFetch(`http://127.0.0.1:${port}`, opts);
+        resolve();
+      } catch (err) {
+        expect(opts.onRetry.mock.calls.length).toBe(0);
+        resolve();
+      } finally {
+        server.close();
+        clearTimeout(timeoutHandler);
+      }
+    });
+    server.on('error', reject);
+  });
 });
