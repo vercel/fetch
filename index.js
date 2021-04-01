@@ -3,10 +3,9 @@ const HttpAgent = require('agentkeepalive');
 const debug = require('debug')('@vercel/fetch');
 const setupFetchRetry = require('@vercel/fetch-retry');
 const setupFetchCachedDns = require('@vercel/fetch-cached-dns');
-const urlModule = require('url');
+const isPlainObject = require('is-plain-obj');
 
 const {HttpsAgent} = HttpAgent;
-const {URLSearchParams} = urlModule;
 
 const AGENT_OPTIONS = {
 	maxSockets: 200,
@@ -52,13 +51,8 @@ function setupVercelFetch(fetch, agentOpts = {}) {
 			opts.headers.get('host') || parseUrl(url).host
 		);
 
-		// Convert Object bodies to JSON if they are JS objects
-		if (
-			opts.body &&
-			!(opts.body instanceof URLSearchParams) &&
-			typeof opts.body === 'object' &&
-			!Buffer.isBuffer(opts.body)
-		) {
+		// Convert Object bodies to JSON if they are plain JS objects
+		if (isPlainObject(opts.body)) {
 			opts.body = JSON.stringify(opts.body);
 			opts.headers.set('Content-Type', 'application/json');
 			opts.headers.set('Content-Length', Buffer.byteLength(opts.body));

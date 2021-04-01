@@ -23,7 +23,8 @@
     "@vercel/fetch-cached-dns": "^2.0.1",
     "@vercel/fetch-retry": "^5.0.2",
     "agentkeepalive": "3.4.1",
-    "debug": "3.1.0"
+    "debug": "3.1.0",
+    "is-plain-obj": "^3.0.0"
   },
   "peerDependencies": {
     "@types/node-fetch": "2",
@@ -46,7 +47,9 @@
     "@zeit/best": "0.5.2",
     "@zeit/eslint-config-node": "0.2.13",
     "async-listen": "1.0.0",
+    "busboy": "^0.3.1",
     "eslint": "5.14.1",
+    "form-data": "^4.0.0",
     "lint-staged": "8.1.4",
     "node-fetch": "2.6.1",
     "pre-commit": "1.2.2",
