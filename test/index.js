@@ -126,7 +126,7 @@ exports.supportsFormDataRequestBody = async () => {
 			req.pipe(busboy);
 		});
 		assert.ok(!error);
-		assert.match(req.headers['content-type'], /multipart\/form-data;/);
+		assert.ok(/multipart\/form-data;/.test(req.headers['content-type']));
 		assert.deepEqual(body, {
 			fieldname: 'file',
 			filename: 'dummy.txt',
@@ -140,10 +140,18 @@ exports.supportsFormDataRequestBody = async () => {
 	const {port} = server.address();
 
 	const formData = new FormData();
-	formData.append('file', Readable.from(['input string']), {
-		filename: 'dummy.txt',
-		contentType: 'text/plain'
-	});
+	const readable = new Readable();
+	readable._read = () => {};
+	readable.push(Buffer.from('input string'));
+	readable.push(null);
+	formData.append(
+		'file',
+		readable,
+		{
+			filename: 'dummy.txt',
+			contentType: 'text/plain'
+		}
+	);
 
 	const res = await fetch(`http://127.0.0.1:${port}`, {
 		method: 'POST',
