@@ -109,15 +109,15 @@ exports.supportsFormDataRequestBody = async () => {
 			busboy.on('error', err => resolve([null, err]));
 			busboy.on('file', async (fieldname, file, filename, encoding, mimetype) => {
 				let fileContent = '';
-				try {
-					for await (const chunk of file) {
-						fileContent += chunk;
-					}
-
+				file.on('data', chunk => {
+					fileContent += chunk;
+				});
+				file.on('end', () => {
 					resolve([{fieldname, filename, encoding, mimetype, fileContent}]);
-				} catch (error_) {
+				});
+				file.on('error', error_ => {
 					resolve([null, error_]);
-				}
+				});
 			});
 			busboy.on('finish', () => {
 				res.end();
