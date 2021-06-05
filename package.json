@@ -1,6 +1,6 @@
 {
   "name": "@vercel/fetch-cached-dns",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A decorator on top of `fetch` that caches the DNS query of the `hostname` of the passed URL",
   "license": "MIT",
   "files": [
