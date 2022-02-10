@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Test monorepo for Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+    name: Test Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
 
     strategy:
       matrix:
