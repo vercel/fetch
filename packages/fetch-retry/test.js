@@ -148,7 +148,7 @@ test('stops retrying when the Retry-After header exceeds the maxRetryAfter optio
   });
 });
 
-test('stops retrying when fetch throws `ERR_UNESCAPED_CHARACTERS` error', async () => {
+test.skip('stops retrying when fetch throws `ERR_UNESCAPED_CHARACTERS` error', async () => {
   const opts = {
     onRetry: jest.fn(),
   }
