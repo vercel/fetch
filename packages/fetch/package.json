@@ -5,8 +5,6 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
-    "lint:staged": "lint-staged",
     "test": "best --verbose"
   },
   "repository": {
@@ -14,10 +12,6 @@
     "url": "git+https://github.com/vercel/fetch.git"
   },
   "author": "Nathan Rajlich <nate@vercel.com>",
-  "bugs": {
-    "url": "https://github.com/vercel/fetch/issues"
-  },
-  "homepage": "https://github.com/vercel/fetch#readme",
   "dependencies": {
     "@types/async-retry": "1.2.1",
     "@vercel/fetch-cached-dns": "^2.0.2",
@@ -29,27 +23,10 @@
     "@types/node-fetch": "2",
     "node-fetch": "2"
   },
-  "pre-commit": "lint:staged",
-  "lint-staged": {
-    "*.js": [
-      "eslint",
-      "git add"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "@zeit/eslint-config-node",
-    "rules": {
-      "linebreak-style": 0
-    }
-  },
   "devDependencies": {
     "@zeit/best": "0.5.2",
-    "@zeit/eslint-config-node": "0.2.13",
     "async-listen": "1.0.0",
-    "eslint": "5.14.1",
-    "lint-staged": "8.1.4",
     "node-fetch": "2.6.1",
-    "pre-commit": "1.2.2",
     "raw-body": "2.3.2"
   }
 }

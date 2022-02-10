@@ -22,18 +22,7 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
     - name: install dependencies
-      run: npm install
-    - name: install fetch package dependencies
-      if: ${{ matrix.node-version }} == 12.x || ${{ matrix.node-version }} == 14.x
-      working-directory: ./packages/fetch
-      run: npm install
-    - name: install fetch-retry package dependencies
-      if: ${{ matrix.node-version }} == 12.x || ${{ matrix.node-version }} == 14.x
-      working-directory: ./packages/fetch-retry
-      run: npm install
-    - name: install fetch-cached-dns package dependencies
-      if: ${{ matrix.node-version }} == 12.x || ${{ matrix.node-version }} == 14.x
-      working-directory: ./packages/fetch-cached-dns
-      run: npm install
-    - run: npm test
+      run: yarn install
+    - run: yarn test
