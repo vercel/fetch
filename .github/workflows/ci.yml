@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    type: [opened]
+
+jobs:
+  test:
+    name: Test monorepo for Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [12.x, 14.x, 16.x]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install dependencies
+      run: npm install
+    - name: install fetch package dependencies
+      if: ${{ matrix.node-version }} == 12.x || ${{ matrix.node-version }} == 14.x
+      working-directory: ./packages/fetch
+      run: npm install
+    - name: install fetch-retry package dependencies
+      if: ${{ matrix.node-version }} == 12.x || ${{ matrix.node-version }} == 14.x
+      working-directory: ./packages/fetch-retry
+      run: npm install
+    - name: install fetch-cached-dns package dependencies
+      if: ${{ matrix.node-version }} == 12.x || ${{ matrix.node-version }} == 14.x
+      working-directory: ./packages/fetch-cached-dns
+      run: npm install
+    - run: npm test
