@@ -1,0 +1,54 @@
+{
+  "name": "@vercel/fetch-cached-dns",
+  "version": "2.0.2",
+  "description": "A decorator on top of `fetch` that caches the DNS query of the `hostname` of the passed URL",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "util.js"
+  ],
+  "scripts": {
+    "test": "jest test",
+    "lint": "eslint .",
+    "lint:staged": "lint-staged"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vercel/fetch-cached-dns.git"
+  },
+  "author": "Nathan Rajlich <nate@vercel.com>",
+  "pre-commit": "lint:staged",
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "prettier --write --single-quote --no-semi",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "@zeit/eslint-config-node"
+  },
+  "bugs": {
+    "url": "https://github.com/vercel/fetch-cached-dns/issues"
+  },
+  "homepage": "https://github.com/vercel/fetch-cached-dns#readme",
+  "peerDependencies": {
+    "node-fetch": "*"
+  },
+  "dependencies": {
+    "@types/node-fetch": "2.3.2",
+    "@zeit/dns-cached-resolve": "2.1.2"
+  },
+  "devDependencies": {
+    "@zeit/eslint-config-node": "0.1.0",
+    "async-listen": "1.0.0",
+    "eslint": "5.16.0",
+    "jest": "24.8.0",
+    "lint-staged": "4.3.0",
+    "node-fetch": "2.6.1",
+    "pre-commit": "1.2.2",
+    "prettier": "1.17.1"
+  }
+}
