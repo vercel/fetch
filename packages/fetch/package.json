@@ -1,0 +1,33 @@
+{
+  "name": "@vercel/fetch",
+  "version": "6.1.1",
+  "description": "Opinionated `fetch` optimized for use inside microservices",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "best --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vercel/fetch.git",
+    "directory": "packages/fetch"
+  },
+  "author": "Nathan Rajlich <nate@vercel.com>",
+  "dependencies": {
+    "@types/async-retry": "1.2.1",
+    "@vercel/fetch-cached-dns": "^2.0.2",
+    "@vercel/fetch-retry": "^5.0.2",
+    "agentkeepalive": "3.4.1",
+    "debug": "3.1.0"
+  },
+  "peerDependencies": {
+    "@types/node-fetch": "2",
+    "node-fetch": "2"
+  },
+  "devDependencies": {
+    "@zeit/best": "0.5.2",
+    "async-listen": "1.0.0",
+    "node-fetch": "2.6.1",
+    "raw-body": "2.3.2"
+  }
+}
