@@ -5,7 +5,7 @@
   "devDependencies": {
     "abort-controller": "^3.0.0",
     "jest": "^21.2.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   },
   "peerDependencies": {
     "node-fetch": "*"

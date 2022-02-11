@@ -27,7 +27,7 @@
   "devDependencies": {
     "@zeit/best": "0.5.2",
     "async-listen": "1.0.0",
-    "node-fetch": "2.6.1",
+    "node-fetch": "2.6.7",
     "raw-body": "2.3.2"
   }
 }

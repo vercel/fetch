@@ -29,6 +29,6 @@
   "devDependencies": {
     "async-listen": "1.0.0",
     "jest": "24.8.0",
-    "node-fetch": "2.6.1"
+    "node-fetch": "2.6.7"
   }
 }
