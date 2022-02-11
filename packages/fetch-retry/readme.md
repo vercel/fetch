@@ -1,6 +1,6 @@
 # fetch-retry
 
-[![Build Status](https://github.com/vercel/fetch-retry/workflows/Node%20CI/badge.svg)](https://github.com/vercel/fetch-retry/actions?workflow=Node+CI)
+[![Build Status](https://github.com/vercel/fetch/workflows/CI/badge.svg)](https://github.com/vercel/fetch/actions?workflow=CI)
 
 A layer on top of `fetch` (via [node-fetch](https://www.npmjs.com/package/node-fetch))
 with sensible defaults for retrying to prevent common errors.

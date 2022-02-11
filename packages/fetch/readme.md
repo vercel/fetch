@@ -1,11 +1,11 @@
 # @vercel/fetch
 
-[![Build Status](https://github.com/vercel/fetch/workflows/Node%20CI/badge.svg)](https://github.com/vercel/fetch/actions?workflow=Node+CI)
+[![Build Status](https://github.com/vercel/fetch/workflows/CI/badge.svg)](https://github.com/vercel/fetch/actions?workflow=CI)
 
 Opinionated `fetch` optimized for use inside microservices. Bundles:
 
--   https://github.com/vercel/fetch-retry
--   https://github.com/vercel/fetch-cached-dns
+-   https://github.com/vercel/fetch/tree/main/packages/fetch-retry
+-   https://github.com/vercel/fetch/tree/main/packages/fetch-cached-dns
 -   https://github.com/node-modules/agentkeepalive
 
 It automatically configures an `agent` via [agentkeepalive](https://github.com/node-modules/agentkeepalive),
