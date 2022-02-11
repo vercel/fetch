@@ -1,4 +1,4 @@
-# fetch-retry
+# @vercel/fetch-retry
 
 [![Build Status](https://github.com/vercel/fetch/workflows/CI/badge.svg)](https://github.com/vercel/fetch/actions?workflow=CI)
 
