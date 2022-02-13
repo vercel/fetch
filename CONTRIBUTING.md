@@ -31,7 +31,7 @@ To develop locally:
    yarn test
    ```
 
-> This repo is powered by [turborepo](). Running command such as `test`, `build`, and `lint` from the project root will utilize caching techniques to maximize developer productivity.
+> This repo is powered by [Turborepo](https://turborepo.org/). Running commands such as `test`, `build`, and `lint` from the project root will utilize caching techniques to maximize developer productivity.
 
 ## Testing
 
