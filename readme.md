@@ -4,7 +4,7 @@ This is the official Vercel fetch monorepo
 
 ## Getting Started
 
-There are a variety of ways to use these packages. The core package `@vercel/fetch` bundles the remaining packages together into a super powered [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) client. By default this package will use its peer dependency [node-fetch](https://github.com/node-fetch/node-fetch), but it also supports other fetch implementations.
+`@vercel/fetch` bundles all packages inside this monorepo together into a super-powered [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) client. By default, this package will use its peer dependency [node-fetch](https://github.com/node-fetch/node-fetch), but it also supports other fetch implementations.
 
 ```js
 // Basic Usage
