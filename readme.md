@@ -1,6 +1,10 @@
 # Fetch Monorepo
 
-This is the official Vercel fetch monorepo
+This fetch monorepo contains three packages:
+
+- `@vercel/fetch`
+- `@vercel/fetch-retry`
+- `@vercel/fetch-cached-dns`
 
 ## Getting Started
 
