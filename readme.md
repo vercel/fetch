@@ -6,7 +6,7 @@ This fetch monorepo contains three packages:
 - `@vercel/fetch-retry`
 - `@vercel/fetch-cached-dns`
 
-These packages are recommended to be used in Node.js environments. It aims to bring the familiarity of the Fetch API to the backend. There are future plans to make this project interoperale between both browser and server environments.
+These packages are recommended to be used in Node.js environments. It aims to bring the familiarity of the Fetch API to the backend. There are future plans to make this project interoperable between both browser and server environments.
 
 ## Getting Started
 
