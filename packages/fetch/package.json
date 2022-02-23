@@ -14,20 +14,20 @@
   },
   "author": "Nathan Rajlich <nate@vercel.com>",
   "dependencies": {
-    "@types/async-retry": "1.2.1",
+    "@types/async-retry": "^1.4.3",
     "@vercel/fetch-cached-dns": "^2.0.2",
-    "@vercel/fetch-retry": "^5.0.2",
-    "agentkeepalive": "3.4.1",
-    "debug": "3.1.0"
+    "@vercel/fetch-retry": "^5.0.3",
+    "agentkeepalive": "^4.2.1",
+    "debug": "^4.3.3"
   },
   "peerDependencies": {
-    "@types/node-fetch": "2",
-    "node-fetch": "2"
+    "@types/node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
-    "@zeit/best": "0.5.2",
-    "async-listen": "1.0.0",
-    "node-fetch": "2.6.1",
-    "raw-body": "2.3.2"
+    "@zeit/best": "0.7.3",
+    "async-listen": "^1.2.0",
+    "node-fetch": "^2.6.7",
+    "raw-body": "^2.5.0"
   }
 }

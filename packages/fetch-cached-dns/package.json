@@ -20,15 +20,15 @@
   },
   "author": "Nathan Rajlich <nate@vercel.com>",
   "peerDependencies": {
-    "node-fetch": "*"
+    "node-fetch": "^2.6.1"
   },
   "dependencies": {
-    "@types/node-fetch": "2.3.2",
-    "@zeit/dns-cached-resolve": "2.1.2"
+    "@types/node-fetch": "^2.6.1",
+    "@zeit/dns-cached-resolve": "^2.1.2"
   },
   "devDependencies": {
-    "async-listen": "1.0.0",
-    "jest": "24.8.0",
-    "node-fetch": "2.6.1"
+    "async-listen": "^1.2.0",
+    "jest": "^27.5.1",
+    "node-fetch": "^2.6.1"
   }
 }
