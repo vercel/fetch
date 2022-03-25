@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "test": "jest test",
-    "lint": "TIMING=1 eslint *.js --fix",
+    "lint": "TIMING=1 eslint *.js",
     "prettier": "prettier --write \"*.js\""
   },
   "repository": {
