@@ -20,6 +20,7 @@ importers:
       '@zeit/best': 0.7.3
       agentkeepalive: ^4.2.1
       async-listen: ^1.2.0
+      cross-env: ^7.0.3
       debug: ^4.3.3
       eslint: ^8.11.0
       node-fetch: ^2.6.7
@@ -37,6 +38,7 @@ importers:
       '@vercel/style-guide': 2.0.0_74fb8c5ab7abc2ddc1d0726801e8419f
       '@zeit/best': 0.7.3
       async-listen: 1.2.0
+      cross-env: 7.0.3
       eslint: 8.11.0
       node-fetch: 2.6.7
       prettier: 2.6.1
@@ -50,6 +52,7 @@ importers:
       '@vercel/style-guide': ^2.0.0
       '@zeit/dns-cached-resolve': ^2.1.2
       async-listen: ^1.2.0
+      cross-env: ^7.0.3
       eslint: ^8.11.0
       jest: ^27.5.1
       node-fetch: ^2.6.1
@@ -62,6 +65,7 @@ importers:
       '@babel/core': 7.17.8
       '@vercel/style-guide': 2.0.0_b90723c74de218f68b32e30fe139c1e0
       async-listen: 1.2.0
+      cross-env: 7.0.3
       eslint: 8.11.0
       jest: 27.5.1
       node-fetch: 2.6.7
@@ -74,6 +78,7 @@ importers:
       '@vercel/style-guide': ^2.0.0
       abort-controller: ^3.0.0
       async-retry: ^1.3.3
+      cross-env: ^7.0.3
       debug: ^4.3.3
       eslint: ^8.11.0
       jest: ^27.5.1
@@ -87,6 +92,7 @@ importers:
       '@babel/core': 7.17.8
       '@vercel/style-guide': 2.0.0_b90723c74de218f68b32e30fe139c1e0
       abort-controller: 3.0.0
+      cross-env: 7.0.3
       eslint: 8.11.0
       jest: 27.5.1
       node-fetch: 2.6.7
@@ -1758,6 +1764,14 @@ packages:
   /core-js-pure/3.21.1:
     resolution: {integrity: sha512-12VZfFIu+wyVbBebyHmRTuEE/tZrB4tJToWcwAMcsp3h4+sHR+fMJWbKpYiCRWlhFBq+KNyO8rIV9rTkeVmznQ==}
     requiresBuild: true
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/7.0.3:
