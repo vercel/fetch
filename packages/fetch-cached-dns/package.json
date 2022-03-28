@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "test": "jest test",
-    "lint": "cd ../.. && cross-env TIMING=1 eslint --config .eslintrc.js packages/fetch-cached-dns/**/*.js"
+    "lint": "cd ../.. && pnpm eslint -- packages/fetch-cached-dns/**/*.js"
   },
   "repository": {
     "type": "git",
