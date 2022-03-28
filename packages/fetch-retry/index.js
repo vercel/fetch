@@ -1,5 +1,5 @@
-const retry = require("async-retry");
-const debug = require("debug")("fetch-retry");
+const retry = require('async-retry');
+const debug = require('debug')('fetch-retry');
 
 // retry settings
 const MIN_TIMEOUT = 10;
@@ -12,14 +12,14 @@ module.exports = exports = setup;
 function isClientError(err) {
   if (!err) return false;
   return (
-    err.code === "ERR_UNESCAPED_CHARACTERS" ||
-    err.message === "Request path contains unescaped characters"
+    err.code === 'ERR_UNESCAPED_CHARACTERS' ||
+    err.message === 'Request path contains unescaped characters'
   );
 }
 
 function setup(fetch) {
   if (!fetch) {
-    fetch = require("node-fetch");
+    fetch = require('node-fetch');
   }
 
   async function fetchRetry(url, opts = {}) {
@@ -44,14 +44,14 @@ function setup(fetch) {
 
     try {
       return await retry(async (bail, attempt) => {
-        const { method = "GET" } = opts;
+        const { method = 'GET' } = opts;
         try {
           // this will be retried
           const res = await fetch(url, opts);
-          debug("status %d", res.status);
+          debug('status %d', res.status);
           if ((res.status >= 500 && res.status < 600) || res.status === 429) {
             // NOTE: doesn't support http-date format
-            const retryAfter = parseInt(res.headers.get("retry-after"), 10);
+            const retryAfter = parseInt(res.headers.get('retry-after'), 10);
             if (retryAfter) {
               if (retryAfter > retryOpts.maxRetryAfter) {
                 return res;
@@ -65,16 +65,16 @@ function setup(fetch) {
             return res;
           }
         } catch (err) {
-          if (err.type === "aborted") {
+          if (err.type === 'aborted') {
             return bail(err);
           }
           const clientError = isClientError(err);
           const isRetry = !clientError && attempt <= retryOpts.retries;
           debug(
             `${method} ${url} error (status = ${err.status}). ${
-              isRetry ? "retrying" : ""
+              isRetry ? 'retrying' : ''
             }`,
-            err
+            err,
           );
           if (clientError) {
             return bail(err);

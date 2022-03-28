@@ -10,12 +10,12 @@ with sensible defaults for retrying to prevent common errors.
 `fetch-retry` is a drop-in replacement for `fetch`:
 
 ```js
-const fetch = require('@vercel/fetch-retry')(require('node-fetch'))
+const fetch = require('@vercel/fetch-retry')(require('node-fetch'));
 
 module.exports = async () => {
-  const res = await fetch('http://localhost:3000')
+  const res = await fetch('http://localhost:3000');
   console.log(res.status);
-}
+};
 ```
 
 Make sure to `yarn add @vercel/fetch-retry` in your main package.
@@ -37,7 +37,7 @@ by retrying.
 
 The default behavior of `fetch-retry` is to attempt retries **10**, **60**
 **360**, **2160** and **12960** milliseconds (a total of 5 retries) after
-a *network error*, *429* or *5xx* error occur.
+a _network error_, _429_ or _5xx_ error occur.
 
 The idea is to provide a sensible default: most applications should
 continue to perform correctly with a worst case scenario of a given

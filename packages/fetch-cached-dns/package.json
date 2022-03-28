@@ -12,8 +12,7 @@
   ],
   "scripts": {
     "test": "jest test",
-    "lint": "cross-env TIMING=1 eslint *.js",
-    "prettier": "prettier --write \"*.js\""
+    "lint": "cd ../.. && cross-env TIMING=1 eslint --config .eslintrc.js packages/fetch-cached-dns/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -32,14 +31,8 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@vercel/style-guide": "^2.0.0",
     "async-listen": "^1.2.0",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.11.0",
     "jest": "^27.5.1",
-    "node-fetch": "^2.6.1",
-    "prettier": "^2.6.1",
-    "typescript": "^4.6.3"
+    "node-fetch": "^2.6.1"
   }
 }

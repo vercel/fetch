@@ -1,15 +1,15 @@
 /* eslint-env jest*/
-const { createServer } = require("http");
-const listen = require("async-listen").default;
-const { dnsCachedUrl } = require("./util");
-const cachedDNSFetch = require("./index")(require("node-fetch"));
+const { createServer } = require('http');
+const listen = require('async-listen').default;
+const { dnsCachedUrl } = require('./util');
+const cachedDNSFetch = require('./index')(require('node-fetch'));
 
 /**
  * Using `localtest.me` to use DNS to resolve to localhost
  * http://readme.localtest.me/
  */
 
-test("works with localtest.me", async () => {
+test('works with localtest.me', async () => {
   const server = createServer((req, res) => {
     res.end(JSON.stringify({ url: req.url, headers: req.headers }));
   });
@@ -30,9 +30,9 @@ test("works with localtest.me", async () => {
   }
 });
 
-test("works with absolute redirects", async () => {
+test('works with absolute redirects', async () => {
   const serverA = createServer((req, res) => {
-    res.setHeader("Location", `http://localtest.me:${portB}`);
+    res.setHeader('Location', `http://localtest.me:${portB}`);
     res.statusCode = 302;
     res.end();
   });
@@ -58,11 +58,11 @@ test("works with absolute redirects", async () => {
   }
 });
 
-test("works with relative redirects", async () => {
+test('works with relative redirects', async () => {
   let count = 0;
   const server = createServer((req, res) => {
     if (count++ === 0) {
-      res.setHeader("Location", `/foo`);
+      res.setHeader('Location', `/foo`);
       res.statusCode = 302;
       res.end();
     } else {
@@ -70,7 +70,7 @@ test("works with relative redirects", async () => {
         JSON.stringify({
           url: req.url,
           headers: req.headers,
-        })
+        }),
       );
     }
   });
@@ -92,9 +92,9 @@ test("works with relative redirects", async () => {
   }
 });
 
-test("works with `headers` as an Object", async () => {
+test('works with `headers` as an Object', async () => {
   const server = createServer((req, res) => {
-    res.end(req.headers["x-vercel"]);
+    res.end(req.headers['x-vercel']);
   });
 
   await listen(server);
@@ -103,21 +103,21 @@ test("works with `headers` as an Object", async () => {
   try {
     const res = await cachedDNSFetch(`http://localtest.me:${port}`, {
       headers: {
-        "X-Vercel": "geist",
+        'X-Vercel': 'geist',
       },
     });
-    expect(await res.text()).toBe("geist");
+    expect(await res.text()).toBe('geist');
   } finally {
     server.close();
   }
 });
 
-test("works with `onRedirect` option to customize opts", async () => {
+test('works with `onRedirect` option to customize opts', async () => {
   let count = 0;
 
   const server = createServer((req, res) => {
     if (count === 0) {
-      res.setHeader("Location", `/foo`);
+      res.setHeader('Location', `/foo`);
       res.statusCode = 302;
       res.end();
     } else {

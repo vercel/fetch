@@ -11,8 +11,7 @@
   ],
   "scripts": {
     "test": "best --verbose",
-    "lint": "cross-env TIMING=1 eslint **/*.js",
-    "prettier": "prettier --write \"**/*.js\""
+    "lint": "cd ../.. && cross-env TIMING=1 eslint --config .eslintrc.js packages/fetch-retry/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -35,16 +34,9 @@
     "node-fetch": "^2.6.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@vercel/style-guide": "^2.0.0",
     "@zeit/best": "0.7.3",
     "async-listen": "^1.2.0",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.11.0",
     "node-fetch": "^2.6.7",
-    "prettier": "^2.6.1",
-    "raw-body": "^2.5.0",
-    "typescript": "^4.6.3"
-  },
-  "prettier": "@vercel/style-guide/prettier"
+    "raw-body": "^2.5.0"
+  }
 }

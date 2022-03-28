@@ -2,7 +2,6 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "test": {},
-    "lint": {},
-    "prettier": {}
+    "lint": {}
   }
 }
