@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [require.resolve('@vercel/style-guide/eslint')],
+  extends: [require.resolve('@vercel/style-guide/eslint/node')],
   rules: {
     /* These rules are temporarily disabled.
        The TypeScript rewrite will resolve all outstanding issues. */
