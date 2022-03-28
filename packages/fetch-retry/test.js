@@ -1,4 +1,3 @@
-/* eslint-env jest*/
 const assert = require('assert');
 const { createServer } = require('http');
 const AbortController = require('abort-controller');

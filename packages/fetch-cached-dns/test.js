@@ -1,4 +1,3 @@
-/* eslint-env jest*/
 const { createServer } = require('http');
 const listen = require('async-listen').default;
 const { dnsCachedUrl } = require('./util');
