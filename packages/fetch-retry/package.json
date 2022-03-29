@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "test": "jest test",
-    "lint": "cd ../.. && pnpm eslint -- packages/fetch-retry/**/*.js"
+    "lint": "cd ../.. && pnpm eslint packages/fetch-retry/**/*.js"
   },
   "repository": {
     "type": "git",

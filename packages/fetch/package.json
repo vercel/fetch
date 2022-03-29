@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "best --verbose",
-    "lint": "cd ../.. && pnpm eslint -- packages/fetch/**/*.js"
+    "lint": "cd ../.. && pnpm eslint packages/fetch/**/*.js"
   },
   "repository": {
     "type": "git",
