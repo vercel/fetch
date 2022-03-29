@@ -8,7 +8,7 @@ module.exports = {
         'jest/no-disabled-tests': 'off',
         'jest/expect-expect': 'off',
         'jest/no-conditional-expect': 'off',
-      }
+      },
     },
   ],
   rules: {
