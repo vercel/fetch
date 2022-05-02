@@ -3,28 +3,32 @@
   "version": "2.1.0",
   "description": "A decorator on top of `fetch` that caches the DNS query of the `hostname` of the passed URL",
   "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "util.js"
   ],
   "scripts": {
-    "test": "jest test"
+    "test": "jest test",
+    "lint": "cd ../.. && pnpm eslint packages/fetch-cached-dns/**/*.js"
   },
-  "main": "index.js",
-  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/vercel/fetch.git",
     "directory": "packages/fetch-cached-dns"
   },
-  "author": "Nathan Rajlich <nate@vercel.com>",
-  "peerDependencies": {
-    "node-fetch": "^2.6.1"
-  },
+  "contributors": [
+    "Nathan Rajlich <nate@vercel.com>",
+    "Ethan Arrowood <ethan.arrowood@vercel.com>"
+  ],
   "dependencies": {
     "@types/node-fetch": "^2.6.1",
     "@zeit/dns-cached-resolve": "^2.1.2"
+  },
+  "peerDependencies": {
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "async-listen": "^1.2.0",

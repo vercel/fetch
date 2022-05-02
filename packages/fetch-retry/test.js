@@ -1,5 +1,5 @@
 const assert = require('assert');
-const {createServer} = require('http');
+const { createServer } = require('http');
 const AbortController = require('abort-controller');
 const setup = require('./index');
 
@@ -7,7 +7,7 @@ const { ResponseError } = setup;
 const retryFetch = setup();
 
 test('retries upon 500', async () => {
-  let i = 0
+  let i = 0;
   const server = createServer((req, res) => {
     if (i++ < 2) {
       res.writeHead(500);
@@ -20,7 +20,7 @@ test('retries upon 500', async () => {
   return new Promise((resolve, reject) => {
     server.listen(async () => {
       try {
-        const {port} = server.address();
+        const { port } = server.address();
         const res = await retryFetch(`http://127.0.0.1:${port}`);
         expect(await res.text()).toBe('ha');
         resolve();
@@ -43,11 +43,11 @@ test('resolves on >MAX_RETRIES', async () => {
   return new Promise((resolve, reject) => {
     server.listen(async () => {
       try {
-        const {port} = server.address();
+        const { port } = server.address();
         const res = await retryFetch(`http://127.0.0.1:${port}`, {
           retry: {
-            retries: 3
-          }
+            retries: 3,
+          },
         });
         expect(res.status).toBe(500);
         return resolve();
@@ -69,13 +69,13 @@ test('accepts a custom onRetry option', async () => {
     const opts = {
       onRetry: jest.fn(),
       retry: {
-        retries: 3
-      }
-    }
+        retries: 3,
+      },
+    };
 
     server.listen(async () => {
       try {
-        const {port} = server.address();
+        const { port } = server.address();
         const res = await retryFetch(`http://127.0.0.1:${port}`, opts);
         expect(opts.onRetry.mock.calls.length).toBe(3);
         expect(opts.onRetry.mock.calls[0][0]).toBeInstanceOf(ResponseError);
@@ -88,7 +88,7 @@ test('accepts a custom onRetry option', async () => {
     });
     server.on('error', reject);
   });
-})
+});
 
 test('handles the Retry-After header', async () => {
   const server = createServer((req, res) => {
@@ -98,14 +98,14 @@ test('handles the Retry-After header', async () => {
 
   return new Promise((resolve, reject) => {
     server.listen(async () => {
-      const {port} = server.address();
+      const { port } = server.address();
       try {
         const startedAt = Date.now();
-        const res = await retryFetch(`http://127.0.0.1:${port}`, {
+        await retryFetch(`http://127.0.0.1:${port}`, {
           retry: {
             minTimeout: 10,
-            retries: 1
-          }
+            retries: 1,
+          },
         });
         expect(Date.now() - startedAt).toBeGreaterThanOrEqual(1010);
         resolve();
@@ -128,12 +128,11 @@ test('stops retrying when the Retry-After header exceeds the maxRetryAfter optio
   return new Promise((resolve, reject) => {
     const opts = {
       onRetry: jest.fn(),
-    }
+    };
 
     server.listen(async () => {
-      const {port} = server.address();
+      const { port } = server.address();
       try {
-        const startedAt = Date.now();
         const res = await retryFetch(`http://127.0.0.1:${port}`, opts);
         expect(opts.onRetry.mock.calls.length).toBe(0);
         expect(res.status).toBe(429);
@@ -151,7 +150,7 @@ test('stops retrying when the Retry-After header exceeds the maxRetryAfter optio
 test.skip('stops retrying when fetch throws `ERR_UNESCAPED_CHARACTERS` error', async () => {
   const opts = {
     onRetry: jest.fn(),
-  }
+  };
 
   let err;
   try {

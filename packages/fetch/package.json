@@ -4,15 +4,24 @@
   "description": "Opinionated `fetch` optimized for use inside microservices",
   "license": "MIT",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "best --verbose"
+    "test": "best --verbose",
+    "lint": "cd ../.. && pnpm eslint packages/fetch/**/*.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/vercel/fetch.git",
     "directory": "packages/fetch"
   },
-  "author": "Nathan Rajlich <nate@vercel.com>",
+  "contributors": [
+    "Nathan Rajlich <nate@vercel.com>",
+    "Ethan Arrowood <ethan.arrowood@vercel.com>"
+  ],
   "dependencies": {
     "@types/async-retry": "^1.4.3",
     "@vercel/fetch-cached-dns": "^2.0.2",

@@ -2,24 +2,33 @@
   "name": "@vercel/fetch-retry",
   "version": "5.1.3",
   "license": "MIT",
-  "devDependencies": {
-    "abort-controller": "^3.0.0",
-    "jest": "^27.5.1",
-    "node-fetch": "^2.6.7"
-  },
-  "peerDependencies": {
-    "node-fetch": "^2.6.7"
-  },
-  "dependencies": {
-    "async-retry": "^1.3.3",
-    "debug": "^4.3.3"
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "jest test",
+    "lint": "cd ../.. && pnpm eslint packages/fetch-retry/**/*.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/vercel/fetch.git",
     "directory": "packages/fetch-retry"
   },
-  "scripts": {
-    "test": "jest test"
+  "contributors": [
+    "Nathan Rajlich <nate@vercel.com>",
+    "Ethan Arrowood <ethan.arrowood@vercel.com>"
+  ],
+  "dependencies": {
+    "async-retry": "^1.3.3",
+    "debug": "^4.3.3"
+  },
+  "peerDependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "abort-controller": "^3.0.0",
+    "jest": "^27.5.1",
+    "node-fetch": "^2.6.7"
   }
 }

@@ -1,2 +1,2 @@
 // Used for testing
-exports.dnsCachedUrl = Symbol('dnsCachedUrl')
+exports.dnsCachedUrl = Symbol('dnsCachedUrl');
