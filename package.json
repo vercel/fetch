@@ -12,7 +12,8 @@
     "prepare": "husky install",
     "eslint": "cross-env TIMING=1 eslint --max-warnings 0 --config .eslintrc.js",
     "changeset": "changeset",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "version-packages": "changeset version"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
