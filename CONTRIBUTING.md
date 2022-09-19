@@ -18,17 +18,17 @@ To develop locally:
    ```
    git checkout -b MY_BRANCH_NAME
    ```
-3. Install yarn:
+3. Install pnpm:
    ```
-   npm install -g yarn
+   npm install -g pnpm
    ```
 4. Install the dependencies with:
    ```
-   yarn
+   pnpm i
    ```
 5. Make changes and run tests using:
    ```
-   yarn test
+   pnpm test
    ```
 
 > This repo is powered by [Turborepo](https://turborepo.org/). Running commands such as `test`, `build`, and `lint` from the project root will utilize caching techniques to maximize developer productivity.
@@ -37,7 +37,7 @@ To develop locally:
 
 Each package has its own approach to testing. They can be executed independantly or as a group using `turbo`.
 
-The easiest way to run the complete test suite is to run `yarn test` from the root of this repository.
+The easiest way to run the complete test suite is to run `pnpm test` from the root of this repository.
 
 ## Linting
 
