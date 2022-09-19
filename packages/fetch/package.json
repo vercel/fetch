@@ -30,10 +30,10 @@
     "debug": "^4.3.3"
   },
   "peerDependencies": {
-    "@types/node-fetch": "^2.6.1",
     "node-fetch": "^2.6.7"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.6.1",
     "@zeit/best": "0.7.3",
     "async-listen": "^1.2.0",
     "node-fetch": "^2.6.7",
