@@ -424,6 +424,8 @@ packages:
       }
     engines: { node: '>=6.0.0' }
     hasBin: true
+    dependencies:
+      '@babel/types': 7.17.10
     dev: true
 
   /@babel/plugin-syntax-async-generators/7.8.4_@babel+core@7.17.8:
