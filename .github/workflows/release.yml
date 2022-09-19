@@ -8,10 +8,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
-env:
-  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-
 jobs:
   release:
     name: Release
@@ -36,4 +32,4 @@ jobs:
           title: 'chore: update package versions'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_ELEVATED }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
