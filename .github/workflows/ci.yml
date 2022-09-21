@@ -19,13 +19,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.2.2
         with:
-          version: 6.32.11
+          version: 6.34.0
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      - run: pnpm install
-      - run: pnpm lint
-      - run: pnpm test
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Run Linter
+        run: pnpm lint
+      - name: Run Tests
+        run: pnpm test
