@@ -41,7 +41,11 @@ function setupVercelFetch(fetch, agentOpts = {}) {
     }
 
     opts.redirect = 'manual';
-    opts.headers = new fetch.Headers(opts.headers);
+    const Headers =
+      typeof globalThis.Headers === 'undefined'
+        ? fetch.Headers
+        : globalThis.Headers;
+    opts.headers = new Headers(opts.headers);
     // Workaround for node-fetch + agentkeepalive bug/issue
     opts.headers.set('host', opts.headers.get('host') || parseUrl(url).host);
 

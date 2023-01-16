@@ -11,7 +11,10 @@ function setup(fetch) {
   if (!fetch) {
     fetch = require('node-fetch');
   }
-  const { Headers } = fetch;
+  const Headers =
+    typeof globalThis.Headers === 'undefined'
+      ? fetch.Headers
+      : globalThis.Headers;
 
   async function fetchCachedDns(url, opts) {
     const parsed = parse(url);
