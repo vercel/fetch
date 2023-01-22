@@ -34,4 +34,4 @@ import * as fetch from 'some-fetch-implementation';
 const fetch = createFetch(fetch);
 ```
 
-If no fetch implementation is supplied, it will attempt to use peerDep `node-fetch`.
+If no fetch implementation is supplied, it will attempt to use native fetch (if available) or peerDep `node-fetch` as fallback.

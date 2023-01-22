@@ -10,7 +10,7 @@ These packages are designed for use with Node.js in order to bring the familiari
 
 ## Getting Started
 
-`@vercel/fetch` bundles all packages inside this monorepo together into a super-powered [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) client. By default, this package will use its peer dependency [node-fetch](https://github.com/node-fetch/node-fetch), but it also supports other fetch implementations.
+`@vercel/fetch` bundles all packages inside this monorepo together into a super-powered [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) client. By default, this package will use native fetch (if available) or its peer dependency [node-fetch](https://github.com/node-fetch/node-fetch) as fallback, but it also supports other fetch implementations.
 
 ```js
 // Basic Usage

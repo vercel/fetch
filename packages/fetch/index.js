@@ -79,7 +79,7 @@ function setupVercelFetch(fetch, agentOpts = {}) {
 
 function setup(fetch, options) {
   if (!fetch) {
-    fetch = require('node-fetch');
+    fetch = globalThis.fetch ?? require('node-fetch');
   }
 
   const fd = fetch.default;
