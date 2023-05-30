@@ -65,7 +65,7 @@ function setup(fetch) {
             return res;
           }
         } catch (err) {
-          if (err.type === 'aborted') {
+          if (err.type === 'aborted' || err.name === 'AbortError') {
             return bail(err);
           }
           const clientError = isClientError(err);
