@@ -1,6 +1,6 @@
 {
   "name": "@vercel/fetch",
-  "version": "6.2.0",
+  "version": "7.0.0",
   "description": "Opinionated `fetch` optimized for use inside microservices",
   "license": "MIT",
   "main": "index.js",
