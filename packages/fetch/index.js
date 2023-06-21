@@ -37,7 +37,7 @@ function setupVercelFetch(fetch, agentOpts = {}) {
   return async function vercelFetch(url, opts = {}) {
     if (!opts.agent) {
       // Add default `agent` if none was provided
-      opts.agent = getAgent(url, { AGENT_OPTIONS, ...agentOpts });
+      opts.agent = getAgent(url, { ...AGENT_OPTIONS, ...agentOpts });
     }
 
     opts.redirect = 'manual';
