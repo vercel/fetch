@@ -1,6 +1,5 @@
 const assert = require('assert');
 const { createServer } = require('http');
-const AbortController = require('abort-controller');
 const setup = require('./index');
 
 const { ResponseError } = setup;
@@ -165,36 +164,61 @@ test.skip('stops retrying when fetch throws `ERR_UNESCAPED_CHARACTERS` error', a
 });
 
 test("don't retry if the request was aborted after timeout", async () => {
-  const timeout = 50;
-  const responseAfter = 100;
+  const timeout = 10;
+  const responseAfter = 500;
   const server = createServer((req, res) => {
     setTimeout(() => {
       res.end('ha');
     }, responseAfter);
   });
 
-  const controller = new AbortController();
+  const PonyfilledAbortController = require('abort-controller');
+
+  const ponyfilledController = new PonyfilledAbortController();
+  const nativeController =
+    typeof AbortController !== 'undefined' ? new AbortController() : null;
+
   const timeoutHandler = setTimeout(() => {
-    controller.abort();
+    ponyfilledController.abort();
+    nativeController?.abort();
   }, timeout);
 
-  const opts = {
+  const opts1 = {
     onRetry: jest.fn(),
-    signal: controller.signal,
+    signal: ponyfilledController.signal,
+  };
+  const opts2 = {
+    onRetry: jest.fn(),
+    signal: nativeController?.signal,
   };
 
   return new Promise((resolve, reject) => {
+    let received = 0;
+
     server.listen(async () => {
       try {
         const { port } = server.address();
-        await retryFetch(`http://127.0.0.1:${port}`, opts);
-        resolve();
-      } catch (err) {
-        expect(opts.onRetry.mock.calls.length).toBe(0);
-        resolve();
+        // Test ponyfilled version of AbortController
+        try {
+          await retryFetch(`http://127.0.0.1:${port}`, opts1);
+          received++;
+        } catch {
+          expect(opts1.onRetry.mock.calls.length).toBe(0);
+        }
+        // Test native version of AbortController
+        try {
+          await retryFetch(`http://127.0.0.1:${port}`, opts2);
+          received++;
+        } catch {
+          expect(opts2.onRetry.mock.calls.length).toBe(0);
+        }
+
+        // all requests should be aborted due to timeout
+        expect(received).toBe(0);
       } finally {
         server.close();
         clearTimeout(timeoutHandler);
+        resolve();
       }
     });
     server.on('error', reject);
