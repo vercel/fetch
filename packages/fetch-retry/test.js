@@ -180,7 +180,9 @@ test("don't retry if the request was aborted after timeout", async () => {
 
   const timeoutHandler = setTimeout(() => {
     ponyfilledController.abort();
-    nativeController?.abort();
+    if (nativeController) {
+      nativeController.abort();
+    }
   }, timeout);
 
   const opts1 = {
