@@ -1,3 +1,5 @@
+This repository is now **archived**. See this post for more details: https://github.com/vercel/fetch/issues/83
+
 # Fetch Monorepo
 
 This fetch monorepo contains three packages:
